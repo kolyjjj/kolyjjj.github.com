@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>javascript pattern modules | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-05-07T13:16:03.000Z" itemprop="datePublished">
+          2015-05-07
+      </time>
+    
+    
+    | 
+    <a href='/tags/javascript/'>javascript</a>,
+    
+    <a href='/tags/pattern/'>pattern</a>
+    
+    
+</span>
+
+                <h1>javascript pattern modules</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p><strong>A reading notes of &lt;&lt;Learning javascript design patterns&gt;&gt;</strong></p>
+<h2 id="Why_modules?">Why modules?</h2><ul>
+<li>It’s natural to divide an application to modules.  </li>
+<li>To avoid name conflicts  </li>
+<li>It provides encapsulation, cohesion inside a module, decouping between modules (may use IOC &amp; DI)</li>
+</ul>
+<h2 id="How?">How?</h2><p>Two ways here:</p>
+<ul>
+<li>module pattern  </li>
+<li>object literal  </li>
+</ul>
+<h4 id="A_module_defined_using_object_literal_syntax:">A module defined using object literal syntax:</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myModule = &#123;</span><br><span class="line">  myProperty: <span class="string">'someValue'</span>,</span><br><span class="line">  <span class="comment">//here another object is defined for configuration purposes:</span></span><br><span class="line">  myConfig: &#123;</span><br><span class="line">	useCaching: <span class="literal">true</span>,</span><br><span class="line">	language: <span class="string">'en'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//a very basic method</span></span><br><span class="line">  myMethod: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'I can haz functionality?'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//output a value based on current configuration</span></span><br><span class="line">  myMethod2: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Caching is: '</span> + (<span class="keyword">this</span>.myConfig.useCaching) ? <span class="string">'enabled'</span> : <span class="string">'disabled'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//override the current configuration</span></span><br><span class="line">  myMethod3: <span class="function"><span class="keyword">function</span><span class="params">(newConfig)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> newConfig == <span class="string">'object'</span>)&#123;</span><br><span class="line">	  <span class="keyword">this</span>.myConfig = newConfig;</span><br><span class="line">	  <span class="built_in">console</span>.log(<span class="keyword">this</span>.myConfig.language);</span><br><span class="line">	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Usage:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">myModule.myMethod();</span><br><span class="line">myModule.myMethod2();</span><br><span class="line">myModule.myMethod3(&#123;</span><br><span class="line">  language: <span class="string">'fr'</span>,</span><br><span class="line">  useCaching: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="The_module_pattern">The module pattern</h4><p>The module pattern is used to further <em>emulate</em> the concept of classes in such a way that we’re able to include both public/private methods and variables inside a single object, thus shielding particular parts from the global scope. What this results in is a reduction in the likelihood of your function names conflicting with other functions defined in additional scripts on the page.</p>
+<p>The key to encapsulates “privacy” is to use <strong>closures</strong>.</p>
+<p>Within the module pattern, variables or methods declared are only available inside the module itself thanks to closure.</p>
+<p>A simple example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testModule = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//private variable</span></span><br><span class="line">  <span class="keyword">var</span> counter = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    incrementCounter: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> counter++;</span><br><span class="line">    &#125;,</span><br><span class="line">    resetCounter: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'counter value prior to reset: '</span> + counter);</span><br><span class="line">      counter = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="comment">//test</span></span><br><span class="line">testModule.incrementCounter();</span><br><span class="line">testModule.resetCounter();</span><br></pre></td></tr></table></figure>
+<p>We may view the ‘testModule’ as a ‘prefix’.</p>
+<h2 id="Disadvantage">Disadvantage</h2><ul>
+<li>You can’t access private members in methods that are added to the object at a later point.</li>
+<li>Can’t creat automated unit test for private members and additional complexity when bugs require hot fixes.  </li>
+<li>It’s not easy to extend privates.</li>
+</ul>
+<h2 id="Module_in_js_lib">Module in js lib</h2><p>We may imagine a module function first:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(name);</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> moduleName = name;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      returnName: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> moduleName;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;(name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> koly = <span class="built_in">module</span>(<span class="string">'koly'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(koly);</span><br><span class="line"><span class="built_in">console</span>.log(koly.returnName());</span><br><span class="line">koly.gender = <span class="string">'male'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(koly.gender);</span><br></pre></td></tr></table></figure>
+<h4 id="angular-module_in_AngularJS">angular.module in AngularJS</h4><p>In AngularJS, there is a <code>angular.module</code>, which can be used to create a module.</p>
+<p>We can use it by:</p>
+<pre><code><span class="reserved">var</span> car = angular.<span class="built_in">module</span>(<span class="string">'car'</span>);
+</code></pre><p>Dive into the source:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setupModuleLoader</span><span class="params">(window)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">ensure</span><span class="params">(obj, name, factory)</span> </span>&#123;</span><br><span class="line">	 <span class="keyword">return</span> obj[name] || (obj[name] = factory());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ensure(ensure(<span class="built_in">window</span>, <span class="string">'angular'</span>, <span class="built_in">Object</span>), <span class="string">'module'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> modules = &#123;&#125;;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">module</span><span class="params">(name, requires, configFn)</span> </span>&#123;</span><br><span class="line">	  <span class="keyword">if</span> (requires &amp;&amp; modules.hasOwnProperty(name)) &#123;</span><br><span class="line">	     modules[name] = <span class="literal">null</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">	  <span class="keyword">return</span> ensure(modules, name, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">if</span> (!requires) &#123;</span><br><span class="line">	       <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'No module: '</span> + name);</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">	    <span class="keyword">var</span> invokeQueue = [];</span><br><span class="line">	    <span class="keyword">var</span> runBlocks = [];</span><br><span class="line">	    <span class="keyword">var</span> config = invokeLater(<span class="string">'$injector'</span>, <span class="string">'invoke'</span>);</span><br><span class="line">	    <span class="keyword">var</span> moduleInstance = &#123;</span><br><span class="line"></span><br><span class="line">	      _invokeQueue: invokeQueue,</span><br><span class="line">	      _runBlocks: runBlocks,</span><br><span class="line">	      requires: requires,</span><br><span class="line">	      name: name,</span><br><span class="line">	      provider: invokeLater(<span class="string">'$provider'</span>, <span class="string">'provider'</span>),</span><br><span class="line">	      factory: invokeLater(<span class="string">'$provider'</span>, <span class="string">'factory'</span>),</span><br><span class="line">	      service: invokeLater(<span class="string">'$provider'</span>, <span class="string">'service'</span>),</span><br><span class="line">	      value: invokeLater(<span class="string">'$provider'</span>, <span class="string">'value'</span>),</span><br><span class="line">	      constant: invokeLater(<span class="string">'$provider'</span>, <span class="string">'constant'</span>, <span class="string">'unshift'</span>),</span><br><span class="line">	      animation: invokeLater(<span class="string">'$animationProvider'</span>, <span class="string">'register'</span>),</span><br><span class="line">	      filter: invokeLater(<span class="string">'$filterProvider'</span>, <span class="string">'register'</span>),</span><br><span class="line">	      controller: invokeLater(<span class="string">'$controllerProvider'</span>, <span class="string">'register'</span>),</span><br><span class="line">	      directive: invokeLater(<span class="string">'$compileProvider'</span>, <span class="string">'directive'</span>),</span><br><span class="line">	      config: config,</span><br><span class="line">	      run: <span class="function"><span class="keyword">function</span><span class="params">(block)</span> </span>&#123;</span><br><span class="line">	        runBlocks.push(block);</span><br><span class="line">	        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">	      &#125;</span><br><span class="line">	     &#125;;</span><br><span class="line"></span><br><span class="line">	     <span class="keyword">if</span> (configFn) &#123;</span><br><span class="line">	        config(configFn);</span><br><span class="line">	     &#125;</span><br><span class="line"></span><br><span class="line">	     <span class="keyword">return</span> moduleInstance;</span><br><span class="line"></span><br><span class="line">	     <span class="function"><span class="keyword">function</span> <span class="title">invokeLater</span><span class="params">(provider, method, insertMethod)</span> </span>&#123;</span><br><span class="line">	        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	          invokeQueue[insertMethod || <span class="string">'push'</span>]([]provider, method, <span class="built_in">arguments</span>]);</span><br><span class="line">	          <span class="keyword">return</span> moduleInstance;</span><br><span class="line">	        &#125;;</span><br><span class="line">	      &#125;</span><br><span class="line">	     &#125;);</span><br><span class="line">	    &#125;;</span><br><span class="line">	  &#125;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>Usage of setupModuleLoader:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angularModule = setupModuleLoader(<span class="built_in">window</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  angularModule(<span class="string">'ngLocale'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  angularModule(<span class="string">'ngLocale'</span>, []).provider(<span class="string">'$locale'</span>, $LocalProvider);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>When the <code>setupModuleLoader()</code> function is called, it will return a object, which is <code>window[angular][module]</code>, e.g. <code>window.angular.module</code></p>
+<p><code>window.angular.module</code> is a function itself, the function signiture is : <code>module(name, requires, configFn)</code></p>
+<p>when you call <code>angularModule</code>, you acturally are calling <code>window.angular.module</code>, like <code>module(name, requires, configFn)</code>. This function will return <code>modules[name] = moduleInstance</code></p>
+<h2 id="The_Revealing_Module_Pattern">The Revealing Module Pattern</h2><p>First see an example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myRevealingModule = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">'John Smith'</span>;</span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">updatePerson</span><span class="params">()</span></span>&#123;</span><br><span class="line">    name = <span class="string">'John Smith Updated'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">setPerson</span><span class="params">()</span></span>&#123;</span><br><span class="line">    name = <span class="string">'John Smith Set'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getPerson</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    set: setPerson,</span><br><span class="line">    get: getPerson</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<h2 id="Discussion">Discussion</h2><p>For better using module patter, you need to think more about ‘What is a module?’.</p>
+<p>One clue is to think about cohesion and decoupling, and code management and abstract and encapsulation. These are why we want to use the ‘module’.</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2015/05/08/spring-boot/" style="float: left;">
+        ← sprint boot
+    </a>
+    
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
