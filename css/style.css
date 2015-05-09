@@ -2299,6 +2299,18 @@ ul.page-nav i {
 #leftcol .nav-stacked>li+li {
 	margin-top: 0
 }
+div.author {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: -30px;
+}
+div.author img {
+  width: 80px;
+  -webkit-border-radius: 4.5em;
+  -moz-border-radius: 4.5em;
+  border-radius: 4.5em;
+}
+
 /*--- FAQ's content ---*/
 .help {
 	height: 147px;
