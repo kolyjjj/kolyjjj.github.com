@@ -7,7 +7,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>sprint boot | Koly&#39;s blog</title>
+  <title>Category: Tech | Koly&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -74,7 +74,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -177,69 +177,46 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
       
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2015-05-08T15:00:51.000Z" itemprop="datePublished">
-          2015-05-08
-      </time>
-    
-    
-    | 
-    <a href='/tags/spring/'>spring</a>
-    
-    
-</span>
 
-                <h1>sprint boot</h1>
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2015/05/08/spring-boot/">sprint boot</a></h4>
+                            
+                            <p><time datetime="2015-05-08T15:00:51.000Z"><a href="/2015/05/08/spring-boot/">2015-05-08</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2015/05/07/javascript-pattern-modules/">javascript pattern modules</a></h4>
+                            
+                            <p><time datetime="2015-05-07T13:16:03.000Z"><a href="/2015/05/07/javascript-pattern-modules/">2015-05-07</a></time></p>
+                        </div>
+                    
+                </div>
             </div>
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<h3 id="What_is_Spring_Boot?">What is Spring Boot?</h3><blockquote><p>Spring Boot is a brand new framework from the team at Pivotal, designed to simplify the bootstrapping and development of a new Spring application. The framework takes an opinionated approach to configuration, freeing developers from the need to define boilerplate configuration. In that, Boot aims to be a front-runner in the ever-expanding rapid application development space.</p>
-<footer><strong>Dan Woods </strong><cite><a href="http://www.infoq.com/articles/microframeworks1-spring-boot" target="_blank" rel="external">&lt;&lt;microframeworks spring boot&gt;&gt;</a></cite></footer></blockquote>
-<h3 id="Benefits_of_using_Spring_Boot?">Benefits of using Spring Boot?</h3><ul>
-<li>no xml</li>
-<li>fast, only need to include one or two jars</li>
-<li>easy to integrate spring facilities, like spring data</li>
-</ul>
-<h3 id="An_example_with_gradle">An example with gradle</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath(<span class="string">"org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'spring-boot'</span></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'idea'</span></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'java'</span></span><br><span class="line"></span><br><span class="line">sourceCompatibility = <span class="number">1.7</span></span><br><span class="line"></span><br><span class="line">jar &#123;</span><br><span class="line">    baseName = <span class="string">'spring-boot'</span></span><br><span class="line">    version = <span class="string">'1.0-SNAPSHOT'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile(<span class="string">"org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE"</span>)</span><br><span class="line">    testCompile(<span class="string">'junit:junit:4.12'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task wrapper(<span class="string">type:</span> Wrapper) &#123;</span><br><span class="line">    gradleVersion = <span class="string">'2.4'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="An_official_example_to_start_with">An official example to start with</h3><p><a href="http://spring.io/guides/gs/spring-boot/" target="_blank" rel="external">http://spring.io/guides/gs/spring-boot/</a></p>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="pagination" role="pagination">
-    
-    
-    <a class="pull-right" href="/2015/05/07/javascript-pattern-modules/">
-        javascript pattern modules →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "koly";
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-</div>
     </div>
 </section>
 
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>本来无一物，何处惹尘埃</p>
+        </div>
+    </div>
+</section>
 
       
 <!-- ============================ Footer =========================== -->
