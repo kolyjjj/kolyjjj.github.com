@@ -217,7 +217,7 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p><a href="http://www.postgresql.org/" target="_blank" rel="external">Postgresql</a>是一个开源的关系型数据库。个人觉得这个东西的网站不是很人性化。doc很全，但是在安装手册里面并不能很快地找到自己想要的内容。于是，在安装了三遍之后，我决定再安装一遍。</p>
+      		<p><a href="http://www.postgresql.org/" target="_blank" rel="external">Postgresql</a>是一个开源的关系型数据库。个人觉得这个东西的网站不是很人性化。doc很全，但是在安装手册里面并不能很快地找到自己想要的内容。于是，在安装了三遍之后，我决定再安装一遍。<a id="more"></a></p>
 <h2 id="#_使用apt-get"># 使用apt-get</h2><p>我的环境是：Ubuntu trusty 64。由于apt默认源上没有9.4版本的postgresql，所以根据<a href="http://www.postgresql.org/download/linux/ubuntu/" target="_blank" rel="external">官方安装文档</a>，添加了apt源，使用<code>sudo apt-get install postgres-9.4</code>，安装了postgresql系列的软件。运行的命令是：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main //我的系统是ubuntu trusty</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \</span><br><span class="line">  sudo apt-key add -</span><br><span class="line">  sudo apt-get update</span><br><span class="line">  sudo apt-get install postgres-<span class="number">9.4</span></span><br></pre></td></tr></table></figure>
 <p>官方推荐使用一个专门的linux user来启动，管理postgresql，鉴于实验的目的，所以直接使用当前user了。</p>
