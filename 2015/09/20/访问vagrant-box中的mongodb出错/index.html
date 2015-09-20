@@ -7,7 +7,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: NodeJS | Koly&#39;s blog</title>
+  <title>访问vagrant box中的mongodb出错 | Koly&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -92,7 +92,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -197,37 +197,77 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/05/29/NodeJS-Stream-Tips/">Pipe function in gulp.js</a></h4>
-                            
-                            <p><time datetime="2015-05-29T11:01:54.000Z"><a href="/2015/05/29/NodeJS-Stream-Tips/">2015-05-29</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-09-20T06:23:53.000Z" itemprop="datePublished">
+          2015-09-20
+      </time>
+    
+    
+    | 
+    <a href='/tags/vagrant/'>vagrant</a>
+    
+    
+</span>
+
+                <h1>访问vagrant box中的mongodb出错</h1>
             </div>
         </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>事情是这样子的：我想学习一下nodejs和mongodb，但是又不想在本机上安装一个mongodb，所以我就弄了一个ubuntu的vagrant box（64位的哦），然后把mongodb安装到了这个box里面。结果在使用代码访问这个box里面的mongodb的时候，却出错了…<a id="more"></a></p>
+<h3 id="#_错误情况"># 错误情况</h3><p>出错条件非常简单：</p>
+<ul>
+<li>有一个ubuntu 64 bit的vagrant box</li>
+<li>在这个box里面安装一个mongodb，运行mongodb(sudo service mongod start)</li>
+<li>把mongodb的端口映射到host的端口(config.vm.network “forwarded_port”, guest: 27017, host: 10087)，然后reload box哦</li>
+<li>在外面的host主机里面使用nodejs代码访问box里面的mongodb</li>
+</ul>
+<p>错误消息：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node_modules<span class="regexp">/mongodb/</span>lib/server.<span class="string">js:</span><span class="number">235</span></span><br><span class="line">        process.nextTick(function() &#123; <span class="keyword">throw</span> err; &#125;)</span><br><span class="line"><span class="string">mongoError:</span> server <span class="string">localhost:</span><span class="number">10087</span> received an error &#123;<span class="string">"name"</span>:<span class="string">"MongoError"</span>,<span class="string">"message"</span>:<span class="string">"write EPIPE"</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>刚开始google了一下，关键字是“mongodb error write EPIPE”，结果出来的东西完全不是我想要的。后来突然想了想，会不会是node的错误，而不是mongo的错误呢。于是换成“node error write EPIPE”，然后出来的结果就比较中意了。大意就是说对方中断了连接(connection)。这下知道是vagrant中的mongo问题。于是再次更换搜索词，变成“vagrant mongdo”，运气比较好，刚好有一篇文章，<a href="http://randomgeekery.org/tools/2014/08/06_mongo-vagrant-connect.html" target="_blank" rel="external">这里</a>。参考这篇文章，就把问题给解决了。<br>中途为了确认是不是mongodb有没有连接上，在代码里面更改了mongo url，结果出现无法连接的错误，证明mongodb是连接上了的。恩，还是首先要确定问题的范围。<br>这里贴上连接的代码，使用了koajs：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> koa <span class="subst">=</span> <span class="keyword">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="built_in">var</span> mongo <span class="subst">=</span> <span class="keyword">require</span>(<span class="string">'koa-mongo'</span>);</span><br><span class="line"><span class="built_in">var</span> assert <span class="subst">=</span> <span class="keyword">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"><span class="built_in">var</span> url <span class="subst">=</span> <span class="string">'mongodb://localhost:10087/test'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> app <span class="subst">=</span> koa();</span><br><span class="line"></span><br><span class="line">app<span class="built_in">.</span>use(mongo(&#123;</span><br><span class="line">  uri: <span class="string">'mongodb://localhost:10087/test'</span>, <span class="comment">//or url</span></span><br><span class="line">  <span class="keyword">max</span>: <span class="number">100</span>,</span><br><span class="line">  <span class="keyword">min</span>: <span class="number">1</span>,</span><br><span class="line">  timeout: <span class="number">30000</span>,</span><br><span class="line">  <span class="keyword">log</span>: <span class="literal">false</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+<h3 id="#_原因"># 原因</h3><p>原因就是在<code>/etc/mongod.conf</code>中有一行：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Listen <span class="keyword">to</span> local <span class="keyword">interface</span> only. Comment <span class="keyword">out</span> <span class="keyword">to</span> listen <span class="keyword">on</span> all interfaces.</span><br><span class="line">bind_ip = <span class="number">127.0</span>.<span class="number">0.1</span></span><br></pre></td></tr></table></figure></p>
+<p>这行的意思是说，我这个mongodb只接受本地(127.0.0.1)的连接，别的么，呵呵，我就关掉了。</p>
+<h3 id="#_解决方案"># 解决方案</h3><p>把上面configuration里的那行注释掉就好了：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Listen <span class="keyword">to</span> local <span class="keyword">interface</span> only. Comment <span class="keyword">out</span> <span class="keyword">to</span> listen <span class="keyword">on</span> all interfaces.</span><br><span class="line"># bind_ip = <span class="number">127.0</span>.<span class="number">0.1</span></span><br></pre></td></tr></table></figure>
+<p>行首加一个<code>#</code>。</p>
+<hr>
+<p>总结一下，遇到问题，还是要冷静分析，首先尽可能缩小问题的范围。然后再寻找解决方案。google的搜索词必要时候多换几个试试。最后，这种类似的有警醒意义的东西自然要用博客的方式记录下来。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2015/07/25/ES6-generator探索/">
+        ES6 generator探索 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>本来无一物，何处惹尘埃</p>
-        </div>
-    </div>
-</section>
 
       
 <!-- ============================ Footer =========================== -->
