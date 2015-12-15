@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>haskell中的applicative和Monads | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <!-- <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <div class="author">
+            <a href="/about">
+              <img src="/img/koly.png" alt="author"/>
+            </a>
+            <p>
+              koly
+            </p>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/TECH/" class="animsition-link">TECH<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(8)</small></a></li>
+				    
+              </ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-12-14T05:43:56.000Z" itemprop="datePublished">
+          2015-12-14
+      </time>
+    
+    
+    | 
+    <a href='/tags/haskell/'>haskell</a>
+    
+    
+</span>
+
+                <h1>haskell中的applicative和Monads</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>写本文的目的是为了好好理解一下Haskell中的Monads。本文基于<a href="http://book.douban.com/subject/4934481/" target="_blank" rel="external">《Learn You a Haskell for Great Good》</a>。了解Monads，首先要了解Type Class, the Functor Type Class, Applicative Functors。咱们一个一个慢慢来。<a id="more"></a></p>
+<h2 id="Type_Class">Type Class</h2><p>这个比较简单，类似Java语言中的Interface。也就是说Haskell中，通过type class可以定义一种行为。所谓行为，就是接收一个东西，然后输出一个特定的东西。正如函数所做的那样。</p>
+<p>为了创造一个Type Class，我们需要什么？</p>
+<p>总得有个名字吧。然后得定义一个行为。这里行为怎么定义呢？行为通过函数来表示，所以定义行为就等于定义函数。既然是函数，自然有函数名，输入，输出。</p>
+<p>编译器怎么知道你是在创建Type Class呢？关键字来了。这里有两个关键字：class和where。</p>
+<p>来个例子：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Eq</span> a <span class="keyword">where</span></span></span><br><span class="line">  (==) :: a -&gt; a -&gt; <span class="type">Bool</span></span><br><span class="line">  (/=) :: a -&gt; a -&gt; <span class="type">Bool</span></span><br><span class="line">  x == y = not (x /= y)</span><br><span class="line">  x /= y = not (x == y)</span><br></pre></td></tr></table></figure>
+<p>上面这个例子中，“Eq”表示该Type Class的名字。“a”是Type Parameter，表示任意一种类型，如Int, String等。之后（第二行和第三行）是定义了两个方法“==”和“/=”，使用括号将他们括起来表示他们是中缀，也就是说使用的时候要么是“5 == 4”或者是“(==) 5 4”。之后使用“::”来定义方法的输入和输出类型，两个函数都是接收两个类型为“a”的输入，输出一个Bool型。定义之后是方法的两个默认实现，由于两个实现彼此依赖，所以实现的时候只需要实现其中一个，另一个使用默认的就可以了。</p>
+<p>来看一个实现:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--定义TrafficLight</span></span><br><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">TrafficLight</span> = <span class="type">Red</span> | <span class="type">Yellow</span> | <span class="type">Green</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">--实现Eq type class</span></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Eq</span> <span class="type">TrafficLight</span> <span class="keyword">where</span></span></span><br><span class="line">  <span class="type">Red</span> == <span class="type">Red</span> = <span class="type">True</span></span><br><span class="line">  <span class="type">Yellow</span> == <span class="type">Yellow</span> = <span class="type">True</span></span><br><span class="line">  <span class="type">Green</span> == <span class="type">Green</span> = <span class="type">True</span></span><br><span class="line">  _ == _ = <span class="type">False</span></span><br></pre></td></tr></table></figure></p>
+<p>上例中首先定义了一个TrafficLight类，该类有三个可取值，分别为：Red, Yellow和Green。之后使用“instance”来实现“Eq” type class。也就是说给“TrafficLight”类加上“==”和“/=”这两个行为。实现中，只实现了“==”方法，根据上面的介绍，“/=”使用了默认实现。现在，我们可以看看<code>Red == Yellow</code>，<code>Red == Red</code>的值了。</p>
+<p>至此，我们知道了Type Class是什么，如何定义，及如何使用。接下来是Functor Type Class。</p>
+<h2 id="Functor_Type_Class">Functor Type Class</h2><p>首先，这是一个Type Class。是Haskell定义的众多Type Class中的一个。</p>
+<p>我们来看看Functor Type Class的定义：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Functor</span> f <span class="keyword">where</span></span></span><br><span class="line">  fmap :: (a-&gt;b) -&gt; f a -&gt; f b</span><br></pre></td></tr></table></figure>
+<p>首先，这个Type class的名字叫Functor。其次，它定义了一种行为，称为fmap。该行为接收一个函数及“f a”返回一个“f b”，其中a和b是接收的函数的输入和输出。“f a”和“f b”是两种类型，而“f”称为type constructor，就是说“f”接收一个类型，返回一个新的类型。举个例子：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Functor</span> <span class="type">Maybe</span> <span class="keyword">where</span></span></span><br><span class="line">  fmap f <span class="type">Nothing</span> = <span class="type">Nothing</span></span><br><span class="line">  fmap f (<span class="type">Just</span> x) = <span class="type">Just</span> (f x)</span><br></pre></td></tr></table></figure></p>
+<p>我们与上面Functor的定义对应一下：Maybe就是上面的f，则fmap的定义变成了<code>fmap :: (a-&gt;b) -&gt; Maybe a -&gt; Maybe b</code>。如何应用呢？首先，由于Maybe这个type constructor实现了Functor，那么就可以在由Maybe建立的类型上使用fmap函数，该函数接收一个<code>a-&gt;b</code>的函数以及一个<code>Maybe a</code>，返回一个<code>Maybe b</code>。假设<code>a-&gt;b</code>是<code>(+3)</code>，此处<code>(+3)</code>的定义为<code>Num a =&gt; a -&gt; a</code>。此时，还需要另一个<code>Maybe a</code>类型的参数，假设为<code>Maybe Int</code>，则调用为<code>fmap (+3) (Just 3)</code>，得到<code>Just 6</code>。针对这个例子，翻译一下<code>fmap :: (a-&gt;b) -&gt; Maybe a -&gt; Maybe b</code>，则为<code>fmap :: (Int -&gt; Int) -&gt; Maybe Int -&gt; Maybe Int</code>。</p>
+<p>回顾一下整个过程：</p>
+<ul>
+<li>首先根据<code>fmap :: (a-&gt;b)-&gt;f a-&gt;f b</code>，确认f，f必须为type constructor。比如Maybe</li>
+<li>之后确认fmap接收的函数参数(a-&gt;b)，比如(Int -&gt; Int)</li>
+<li>然后确认fmap接收的第二个参数f a，由于第一步已经确认了f，第二步确认了a，所以这里就好确定了。比如为Maybe Int。</li>
+</ul>
+<p>我们再来分析一下fmap干了什么事情？以<code>fmap (+3) (Just 3)</code>为例，fmap将(+3)这个函数应用于(Just 3)中的值3，得到结果6，然后将6转换为Maybe Int型，即Just 6。如果将fmap这个名字拆为f和map，并对f和map分别理解，会怎么样呢？</p>
+<p>对map，它表示了一种转换。先来看看haskell中的map函数：<code>(a -&gt; b) -&gt; [a] -&gt; [b]</code>。map函数接收一个函数以及一个数组，然后对数组中的每一个值应用该函数，然后将得到的结果放在一个数组中。简单来说就是将数组a转换为数组b。</p>
+<p>fmap中的map，表示的也是一种转换。而f，则可以理解为一种context（域），或者是一种盒子。fmap做得事情就是将盒子中的值拿出来，应用转换函数，然后将结果再放回盒子中。此盒子有一个构造函数，输入为值，输出为盒子。比如Maybe，输入Int，则输出的盒子为Maybe Int。<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="external">adit.io</a>有一个很好的图：</p>
+<p><img src="/images/functor.png" alt="functor"></p>
+<p>我们再来看看数组:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Functor</span> [] <span class="keyword">where</span></span></span><br><span class="line">  fmap = map</span><br></pre></td></tr></table></figure>
+<p>首先<code>[]</code>是一个type constructor，输入一种类型，得到另一种类型。比如输入Int，得到[Int]。<code>fmap = map</code>，为什么呢？正常的fmap是将f替换为[]为<code>fmap :: (a-&gt;b)-&gt;[a]-&gt;[b]</code>，同map的定义一致。所以对[]，map就是fmap。</p>
+<p>fmap也可以这样表述：fmap接收一个函数以及一个Functor，然后输出一个新的Functor，同样一个来自<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="external">adit.io</a>的图：</p>
+<p><img src="/images/functor_def.png" alt="function_def"></p>
+<p>Functor就是指一个通过Type Constructor得到的具体类型，而该Type Constructor实现了Functor type class。比如Just 3是根据Maybe得到的具体类型，而Maybe实现了Functor type class，则Just 3就是一个Functor。<code>fmap (+3) (Just 3)</code>得到<code>Just 5</code>，<code>Just 3</code>是一个Functor，<code>Just 5</code>是另一个Functor。</p>
+<p>简单一点，Functor是一个Type Class，其定义了一种行为叫fmap，fmap接收一个函数和一个functor，得到一个新的functor。</p>
+<h2 id="Applicative_Type_Class">Applicative Type Class</h2><p>Applicative 也是一个Type Class。</p>
+<p>先不提Applicative type class。我们先来看看Functor：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Functor</span> f <span class="keyword">where</span></span></span><br><span class="line">  fmap :: (a-&gt;b) -&gt; f a -&gt; f b</span><br></pre></td></tr></table></figure></p>
+<p>Functor可以让我们这样:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fmap</span> (+<span class="number">3</span>) (<span class="type">Just</span> <span class="number">3</span>) <span class="comment">-- the result is Just 6</span></span><br></pre></td></tr></table></figure></p>
+<p>如果是下面这样，输出的是什么呢？<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fmap</span> (+) (<span class="type">Just</span> <span class="number">3</span>) <span class="comment">-- what's the result?</span></span><br></pre></td></tr></table></figure></p>
+<p>直接在ghci中输出的话，ghci会告诉你找不到对应的show方法。如果使用<code>:t fmap (+) (Just 3)</code>，结果是<code>Num a =&gt; Maybe (a -&gt; a)</code>。这是一种具体类型(concrete type)。考虑到Maybe的定义:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="typedef"><span class="keyword">data</span> <span class="type">Maybe</span> a = <span class="type">Nothing</span> | <span class="type">Just</span> a</span></span><br></pre></td></tr></table></figure></p>
+<p>则“Maybe (a -&gt; a)”对应的是“Maybe (a-&gt;a) = Nothing | Just (a-&gt;a)”，因此它的一个实例为“Just (\x-&gt;x)”。</p>
+<p>对于“(a-&gt;a)”，我们可以看看下面这段代码：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">applyFunc2Value</span> :: [(a-&gt;b)] -&gt; a -&gt; [b]</span><br><span class="line"><span class="title">applyFunc2Value</span> [] _ = []</span><br><span class="line"><span class="title">applyFunc2Value</span> (x:xs) y = x y : (applyFunc2Value xs y)</span><br><span class="line"></span><br><span class="line"><span class="title">applyFunc2Value</span> [(*<span class="number">3</span>), (+<span class="number">2</span>), (\x-&gt;x+<span class="number">10</span>)] <span class="number">4</span> <span class="comment">-- result is: [12,6,14]</span></span><br></pre></td></tr></table></figure></p>
+<p>上例中的“[(a-&gt;b)]”是一个具体类型，而[]于Maybe类似，所以“Maybe (a-&gt;b)”也是一个基本类型。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">addMaybe</span> :: <span class="type">Maybe</span> (a-&gt;b) -&gt; a -&gt; <span class="type">Maybe</span> b</span><br><span class="line"><span class="title">addMaybe</span> <span class="type">Nothing</span> _ = <span class="type">Nothing</span></span><br><span class="line"><span class="title">addMaybe</span> (<span class="type">Just</span> f) x = <span class="type">Just</span> (f x)</span><br><span class="line"></span><br><span class="line"><span class="title">addMaybe</span> (<span class="type">Just</span> (+<span class="number">3</span>)) <span class="number">5</span> <span class="comment">-- result is: Just 8</span></span><br></pre></td></tr></table></figure>
+<p>至此，我们知道“Maybe (a-&gt;b)”是一种具体类型，以及可以如何使用它。</p>
+<p>Functor中的fmap接收一个函数和一个functor，得到另一个functor，比如: fmap (+3) (Just 5)会得到Just 8。如果我们想要计算Just (+3)与Just 8的值，就无法使用Functor中的fmap。而这时，applicative就派上用场了。</p>
+<p>先看看applicative type class的定义：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class (Functor f) =&#62; Applicative f where&#10;  pure :: a -&#62; f a&#10;  (&#60;*&#62;) :: f (a-&#62;b) -&#62; f a -&#62; f b</span><br></pre></td></tr></table></figure></p>
+<p>首先，Applicative的instance是一个Functor，即上面的f是一个Functor，也就是说有<code>instance Functor f where ...</code>。其次，Applicative type class定义了两个行为，也就是两个函数。一个是pure，另一个是“&lt;*&gt;”。pure函数接收一个参数，然后通过f来创建一个新的实例。如果f为Maybe，则pure可以为：pure x = Just x。“&lt;*&gt;”函数接收一个函数Functor和一个Functor，返回一个Functor。比如(Just (+3)) &lt;*&gt; (Just5)得到Just 8。这样就可以计算上述的Just (+3)与Just 8的值了。</p>
+<p>按照盒子的比喻，<code>&lt;\*&gt;</code>是将第一个盒子中的函数拿出来，应用到第二个盒子中的值，然后将结果放回盒子中。这里参数中的两个盒子和返回值的盒子都是一样的。<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="external">adit.io</a>中的图：</p>
+<p><img src="/images/applicative_just.png" alt="applicative just"></p>
+<p>先来看一个例子：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Maybe 实现Applicative</span></span><br><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Applicative</span> <span class="type">Maybe</span> <span class="keyword">where</span></span></span><br><span class="line">  pure = <span class="type">Just</span></span><br><span class="line">  <span class="type">Nothing</span> &lt;*&gt; _ = <span class="type">Nothing</span></span><br><span class="line">  (<span class="type">Just</span> f) &lt;*&gt; something = fmap f something</span><br><span class="line"></span><br><span class="line"><span class="title">pure</span> (+<span class="number">3</span>) &lt;*&gt; <span class="type">Just</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>除了上面的用法，我们还可以：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pure</span> (+) &lt;*&gt; <span class="type">Just</span> <span class="number">3</span> &lt;*&gt; <span class="type">Just</span> <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
+<p>这就是<code>pure f &lt;*&gt; x &lt;*&gt; y...</code>，根据定义有：<code>pure f &lt;*&gt; x = fmap f x</code>，所以<code>pure f &lt;*&gt; x &lt;*&gt; y</code>可以写成<code>fmap f x &lt;*&gt; y</code>，在Control.Appicative中，定义了：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(&lt;$&gt;) :: (<span class="type">Functor</span> f) =&gt; (a-&gt;b) -&gt; f b -&gt; f b</span><br><span class="line"><span class="title">f</span> &lt;$&gt; x = fmap f x</span><br></pre></td></tr></table></figure></p>
+<p>所以<code>fmap f x &lt;*&gt; y</code>可以写成<code>f &lt;$&gt; x &lt;*&gt; y</code>，比如：<code>(+) &lt;$&gt; Just 3 &lt;*&gt; Just 5</code>即为<code>fmap (+) (Just 3) &lt;*&gt; Just 8</code>。</p>
+<p>对于[]，有:<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Applicative</span> [] <span class="keyword">where</span></span></span><br><span class="line">  pure x = [x]</span><br><span class="line">  fs &lt;*&gt; xs = [f x | f &lt;- fs, x &lt;- xs]</span><br><span class="line"></span><br><span class="line"><span class="title">pure</span> <span class="string">"hey"</span> :: [<span class="type">String</span>]</span><br><span class="line">[(*<span class="number">0</span>), (+<span class="number">100</span>), (^<span class="number">2</span>)] &lt;*&gt; [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">[(+), (*)] &lt;*&gt; [<span class="number">1</span>,<span class="number">2</span>] &lt;*&gt; [<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">(++) &lt;$&gt; [<span class="string">"ha"</span>, <span class="string">"heh"</span>, <span class="string">"hmm"</span>] &lt;*&gt; [<span class="string">"?"</span>, <span class="string">"!"</span>, <span class="string">"."</span>]</span><br></pre></td></tr></table></figure></p>
+<p>对于函数，有：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="instruction"></span><br><span class="line">instance </span>Applicative<span class="function"> (</span>(-&gt;<span class="function">)</span>r<span class="function">)</span> where</span><br><span class="line">  pure x =<span class="function"> (</span>\_ -&gt; x<span class="function">)</span></span><br><span class="line">  f &lt;*&gt; g = \x -&gt; f x<span class="function"> (</span>g x<span class="function">)</span></span><br><span class="line"></span><br><span class="line">(+<span class="function">)</span> &lt;$&gt;<span class="function"> (</span>+3<span class="function">)</span> &lt;*&gt;<span class="function"> (</span>*100<span class="function">)</span> $ 5</span><br><span class="line">(\x y z -&gt; <span class="keyword">[</span>x,y,z]<span class="function">)</span> &lt;$&gt;<span class="function"> (</span>+3<span class="function">)</span> &lt;*&gt;<span class="function"> (</span>*2<span class="function">)</span> &lt;*&gt;<span class="function"> (</span>/2<span class="function">)</span> $ 5</span><br></pre></td></tr></table></figure></p>
+<h2 id="Monads">Monads</h2><p>在介绍Monads之前，我们先来回顾一下Functor和Applicative。</p>
+<ul>
+<li>Functor和Applicative都是type class</li>
+<li>Functor的fmap函数是接收一个函数，和一个盒子，将函数应用于盒子里的值，得到的结果放在盒子里。<code>fmap :: (a-&gt;b) -&gt; f a -&gt; f b</code></li>
+<li>Applicative的&lt;*&gt;函数是接收一个里面是函数的盒子及一个里面是数值的盒子，将函数应用于数值，然后将结果放回盒子里。<code>(&lt;*&gt;) :: f (a-&gt;b) -&gt; f a -&gt; f b</code></li>
+</ul>
+<p>而Monad呢？</p>
+<ul>
+<li>Monad中“&gt;&gt;=”函数的定义：<code>(&gt;&gt;=) :: (Monad m) =&gt; m a -&gt; (a -&gt; m b) -&gt; m b</code></li>
+<li>Monad的(&gt;&gt;=)函数接收一个盒子及一个可将数值转换为盒子的函数，将函数应用于盒子里的值，得到的盒子就是(&gt;&gt;=)函数的返回。其中(&gt;&gt;=)称为bind</li>
+</ul>
+<p>如你所料，Maybe也是一个Monad。先来看看怎么用：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Just</span> <span class="number">9</span> &gt;&gt;= (\x -&gt; return (x*<span class="number">10</span>)) <span class="comment">--result is: Just 90</span></span><br></pre></td></tr></table></figure></p>
+<p>“&gt;&gt;=”的左边是一个盒子，右边是一个函数，该函数接收一个值，返回一个盒子，该盒子就是“&gt;&gt;=”的返回值。</p>
+<p>知道了怎么用，来看看Monad的完整定义：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Monad</span> m <span class="keyword">where</span></span></span><br><span class="line">  return :: a -&gt; m a</span><br><span class="line"></span><br><span class="line">  (&gt;&gt;=) :: m a -&gt; (a -&gt; m b) -&gt; m b</span><br><span class="line"></span><br><span class="line">  (&gt;&gt;) :: m a -&gt; m b -&gt; m b</span><br><span class="line">  x &gt;&gt; y = x &gt;&gt;= \_ -&gt; y</span><br><span class="line"></span><br><span class="line">  fail :: <span class="type">String</span> -&gt; m a</span><br><span class="line">  fail msg = error msg</span><br></pre></td></tr></table></figure></p>
+<p>定义中的第一个函数与Applicative中的pure类似，将一个值转为Monad，承担了转换作用。<br>第二个函数“&gt;&gt;=”上面已经介绍了。第三个函数“&gt;&gt;”接收两个Monad，然后返回第二个Monad。最后一个“fail”函数，定义了失败时候的行为，一般我们都不用管它。</p>
+<p>再来看看Maybe对Monad的实现：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Monad</span> <span class="type">Maybe</span> <span class="keyword">where</span></span></span><br><span class="line">  return x = <span class="type">Just</span> x</span><br><span class="line">  <span class="type">Nothing</span> &gt;&gt;= f = <span class="type">Nothing</span></span><br><span class="line">  <span class="type">Just</span> x &gt;&gt;= f = f x</span><br><span class="line">  fail _ = <span class="type">Nothing</span></span><br></pre></td></tr></table></figure></p>
+<p>于是我们可以：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">return</span> <span class="string">"hello"</span> :: <span class="type">Maybe</span> <span class="type">String</span></span><br><span class="line"><span class="type">Just</span> <span class="number">3</span> &gt;&gt;= (\x-&gt;return $ x + <span class="number">9</span>)</span><br><span class="line"><span class="type">Just</span> <span class="number">3</span> &gt;&gt; <span class="type">Nothing</span></span><br></pre></td></tr></table></figure></p>
+<p>由于“&gt;&gt;=”函数的第二个参数接收一个盒子，返回一个盒子。所以可以链式使用该函数。举个例子：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">add9</span> :: <span class="type">Int</span> -&gt; <span class="type">Maybe</span> <span class="type">Int</span></span><br><span class="line"><span class="title">add9</span> x = <span class="keyword">if</span> x &lt; <span class="number">0</span> <span class="keyword">then</span> <span class="type">Nothing</span> <span class="keyword">else</span> <span class="type">Just</span> (x+<span class="number">9</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">Just</span> <span class="number">3</span> &gt;&gt;= add9 &gt;&gt;= add9 &gt;&gt;= add9</span><br></pre></td></tr></table></figure></p>
+<p>简单来说，Monad就是代表了一种行为，这种行为根据一个盒子和一个返回盒子的函数，来产生另一个盒子，借用<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="external">adit.io</a>的图：</p>
+<p><img src="/images/monad_just.png" alt="monad just"></p>
+<h2 id="总结">总结</h2><p>在Haskell里面，有一些基本类型，比如Int, Double, String。对于这些类型，有一些操作，比如: +，-，*。这些简单类型可以完成一些运算，但是在遇到比较大的问题的时候，由于代码增多，就需要更高级的、抽象的类型来使程序更好编写，更易阅读，更易维护。于是，高级类型就出现了，比如表示不确定性的Maybe，表示列表的[]，表示输入输出的IO。对于这些类型，我们也需要一些操作，比如对Maybe 7 + Maybe 8，我们希望得到Maybe 15。所以，我们定义了一些type class，将通用的行为抽象并定义为具体的type class。通过这些type class，我们可以在操作高级类型的时候重用基本类型的操作。比如Maybe 7 + Maybe 8 = Maybe (7+8)。于是，有了这些抽象：</p>
+<ul>
+<li>高级类型由初级类型组建，只是加上了一些context。我们将高级类型类比为盒子，盒子里面装有基本类型，它可以是函数，也可以是数值</li>
+<li>有了盒子之后，我们发现我们常常需要盒子与盒子的操作，以及盒子与非盒子的操作，非盒子包括了函数和数值，比如Maybe是一个盒子，那么有(*3)与Just 3的操作，也需要Just (*3)与Just 3的操作。也需要Just 3与(\x-&gt;Just (x+3))的操作。</li>
+<li>函数与盒子的操作，我们定义了Functor</li>
+<li>盒子与盒子的操作，我们定义了Applicative</li>
+<li>盒子与返回盒子的函数的操作，我们定义了Monad</li>
+</ul>
+<p>借用<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="external">adit.io</a>的图：</p>
+<p><img src="/images/recap.png" alt="recap"></p>
+<p>以及总结：</p>
+<ul>
+<li>functors: you apply a function to a wrapped value using <code>fmap</code> or <code>&lt;$&gt;</code></li>
+<li>applicatives: you apply a wrapped function to a wrapped value using <code>&lt;*&gt;</code> or <code>liftA</code></li>
+<li>monads: you apply a function that returns a wrapped value, to a wrapped value using <code>&gt;&gt;=</code> or <code>liftM</code></li>
+</ul>
+<h3 id="参考资料">参考资料</h3><p>[1] <a href="http://book.douban.com/subject/4934481/" target="_blank" rel="external">《Learn You a Haskell for Great Good》</a><br>[2] <a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="external">http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html</a></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2015/11/03/【译】数据库设计基础/">
+        【译】数据库设计基础 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
