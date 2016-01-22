@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>docker基础 | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <!-- <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <div class="author">
+            <a href="/about">
+              <img src="/img/koly.png" alt="author"/>
+            </a>
+            <p>
+              koly
+            </p>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/TECH/" class="animsition-link">TECH<small>(12)</small></a></li>
+				    
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(0)</small></a></li>
+				    
+              </ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-12-29T01:41:13.000Z" itemprop="datePublished">
+          2015-12-29
+      </time>
+    
+    
+    | 
+    <a href='/tags/docker/'>docker</a>
+    
+    
+</span>
+
+                <h1>docker基础</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>学习docker，既然学习了，那么自然需要有输出。这篇就算学习笔记了。先看看一些基础知识。<a id="more"></a></p>
+<h2 id="docker是什么？">docker是什么？</h2><p>一个工具，这个工具可以帮助你创建一个虚拟机。然后你可以对这个虚拟机环境进行各种配置。既然建立了虚拟机，就可以实现对虚拟机的管理，比如start，restart，stop等。还可以把这些虚拟机怎么建立的发布在网上，让大家都可以用。比如你想要一台java环境的ubuntu，以前你需要自己搞一个虚拟机，然后在里面安装java，然后配置网络映射。现在就只需要使用docker，然后用一个命令，就可以拿到已经安装了java的ubuntu，然后起一个虚拟机，同时映射网络。</p>
+<h2 id="docker中的概念">docker中的概念</h2><ul>
+<li>docker engine，负责在系统中安装docker，创建和运行docker container。</li>
+<li>image，相当于一个模板，虚拟机根据这个模板来进行配置。比如模板里面写了，要ubuntu，那就去下一个ubuntu，要tomcat，就去下一个，然后进行配置。</li>
+<li>container，这个是虚拟机的容器。就是说根据上面所说的image创建的虚拟机就跑在这里面。</li>
+<li>docker hub，官方的下载各种image的地方。地址在这里：<a href="https://hub.docker.com/" target="_blank" rel="external">hub.docker.com</a></li>
+<li>volume, 是一个mount point，就是可以给container指定一个volume，然后这个volume会跟host里面的某个地方(文件或者文件夹)映射起来。可以显示指定host里面对应的文件夹或文件，如果没有显示指定，那么docker会自动指定一个。</li>
+<li>bridge，桥接。简单来说就是在host上建立一个网络，比如是叫isolated_net，然后可以指定container加入这个网络。这样就可以实现多个container的通信。默认情况下使用的网络是docker0。</li>
+<li>docker-machine。一个工具。ocker-machine可以在不同的地方创建docker host，比如在一台电脑上，在公有云或者私有云上。它会创建一个docker host，然后在上面安装docker，最后对docker client进行配置，使其可以访问docker host。同时，docker-machine还提供了一系列的命令来管理docker host。</li>
+</ul>
+<h2 id="docker_engine,_docker_machine,_docker_host和docker_client">docker engine, docker machine, docker host和docker client</h2><p>先来看看docker engine，<a href="https://www.docker.com/docker-engine" target="_blank" rel="external">官网</a>是这样介绍的：<br><blockquote><p>At the core of the Docker platform is Docker Engine, a lightweight runtime and robust tooling that builds and runs your Docker containers. Docker Engine runs on Linux to create the operating environment for your distributed applications. The in-host daemon communicates with the Docker client to execute commands to build, ship and run containers</p>
+<footer><strong>https://www.docker.com/docker-engine</strong></footer></blockquote><br>从上面那段文字，我们可以得到几点：</p>
+<ul>
+<li>docker engine 是docker平台的核心部分</li>
+<li>docker engine是一个轻量级的runtime，什么是runtime呢？就是可以让某些符合要求的东西运行的东西</li>
+<li>docker engine同时还是一个工具，这个工具可以创建和运行docker container</li>
+<li>docker engine运行在linux上，并且会为运行某些分布式程序创建环境。所以这就是说docker engine无法运行在mac和windows上咯？</li>
+<li>docker host 里面运行的一个daemon会跟docker client通信，以此执行命令去创建，传输和运行container。<br>docker engine还给了一张图:</li>
+</ul>
+<p><img src="/images/docker-engine.png" alt="docker engine"></p>
+<p>这个图告诉我们，docker engine会在os上面在创建一个环境。</p>
+<p>先来看看docker在macOS上是怎么办的？<br>在docker mac上的<a href="https://docs.docker.com/engine/installation/mac/" target="_blank" rel="external">安装文档</a>里有说明，由于docker这个daemon，需要linux的kernel。所以docker没办法直接运行在MacOS上。所以需要先在Mac上创建一个虚拟机(Virtual Machine)咯。这个虚拟机还得是一个linux。这个虚拟机的创建就可以使用docker-machine。<br>在linux上，localhost就是docker host，也就是说Docker client, Docker daemon，以及containers都是直接运行在那台linux物理机上，而不是运行在虚拟机里。有个图:</p>
+<p><img src="/images/docker_on_linux.svg" alt="docker_on_linux"></p>
+<p>同样的，在mac系统上也有一张图:</p>
+<p><img src="/images/docker_on_mac.svg" alt="docker_on_mac"></p>
+<p>对比这两个图，就知道不同了。图里面还有一些概念：</p>
+<ul>
+<li>docker client</li>
+<li>docker host</li>
+<li>docker daemon</li>
+</ul>
+<p>那么，在MacOS上使用docker，需要做什么呢？</p>
+<ul>
+<li>创建一个virtual machine，然后在这个virtual machine里面安装一些东西。这时候就可以使用docker-machine create —driver virtualbox <machine_name>啦。</machine_name></li>
+<li>然后告诉docker-machine，你要用这个新的docker vm啦：docker-machine env <machine_name></machine_name></li>
+<li>然后需要将shell同docker machine关联起来：eval “$(docker-machine env <machine_name>)”。docker-machine env <machine_name>的结果是：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> DOCKER_TLS_VERIFY=<span class="string">"1"</span></span><br><span class="line"><span class="keyword">export</span> DOCKER_HOST=<span class="string">"tcp://192.168.99.101:2376"</span></span><br><span class="line"><span class="keyword">export</span> DOCKER_CERT_PATH=<span class="string">"/Users/mary/.docker/machine/machines/default"</span></span><br><span class="line"><span class="keyword">export</span> DOCKER_MACHINE_NAME=<span class="string">"default"</span></span><br><span class="line"># Run <span class="keyword">this</span> command to configure your shell:</span><br><span class="line"># <span class="built_in">eval</span> <span class="string">"$(docker-machine env default)"</span></span><br></pre></td></tr></table></figure>
+</machine_name></machine_name></li>
+</ul>
+<p>eval就是把这些export …全部都在当前的shell执行一遍。我猜通过设置这些property，docker client就知道怎么去访问docker host了。顺便说一句刚刚建立的虚拟机是有一个自己的ip地址的。使用docker-machine ip <machine_name>可以得到该machine的ip，然后docker-machine ls可以列出所有的docker machine。</machine_name></p>
+<p>由于docker是可以直接运行在linux上的，所以linux上不需要创建虚拟机，所以在linux上，默认情况下，不需要使用docker-machine。所以玩docker还是找个linux distribution吧。</p>
+<p>那么在linux上需要安装什么呢？<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get <span class="operator"><span class="keyword">install</span> docker-<span class="keyword">engine</span></span></span><br></pre></td></tr></table></figure></p>
+<p>docker-engine就可以了。</p>
+<p>总结一下，docker-engine是docker需要的执行环境以及一些工具，是基础。docker-machine是用来创建和管理docker vm或者说是docker环境的。Docker host指的就是运行docker的机器，linux上就是运行linux的物理机，windows和mac上是一个虚拟机。Docker daemon是docker host里面运行的一个docker相关的程序，这个程序会完成诸如contaienr管理之类的工作。Docker<br>client是在docker虚拟机外的一个客户端，可以独立运行在linux，mac，和windows上。</p>
+<h2 id="怎么用？">怎么用？</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">需求</th>
+<th style="text-align:center">命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">查看系统信息</td>
+<td style="text-align:center">docker info</td>
+</tr>
+<tr>
+<td style="text-align:left">查看所有命令</td>
+<td style="text-align:center">docker -h</td>
+</tr>
+<tr>
+<td style="text-align:left">查看单个命令帮助文档</td>
+<td style="text-align:center">docker help <command_name></command_name></td>
+</tr>
+<tr>
+<td style="text-align:left">pull一个image</td>
+<td style="text-align:center">docker pull <image_name></image_name></td>
+</tr>
+<tr>
+<td style="text-align:left">创建image</td>
+<td style="text-align:center">docker build</td>
+</tr>
+<tr>
+<td style="text-align:left">列出image</td>
+<td style="text-align:center">docker images</td>
+</tr>
+<tr>
+<td style="text-align:left">删除image</td>
+<td style="text-align:center">docker rmi <image_id></image_id></td>
+</tr>
+<tr>
+<td style="text-align:left">删除所有image</td>
+<td style="text-align:center">docker rmi $(docker ps -aq)</td>
+</tr>
+<tr>
+<td style="text-align:left">创建container</td>
+<td style="text-align:center">docker run <image_name></image_name></td>
+</tr>
+<tr>
+<td style="text-align:left">列出正在运行的container</td>
+<td style="text-align:center">docker ps</td>
+</tr>
+<tr>
+<td style="text-align:left">列出所有的container</td>
+<td style="text-align:center">docker ps -a</td>
+</tr>
+<tr>
+<td style="text-align:left">删除container</td>
+<td style="text-align:center">docker rm <container_id></container_id></td>
+</tr>
+<tr>
+<td style="text-align:left">删除所有container</td>
+<td style="text-align:center">docker rm $(docker images -q)</td>
+</tr>
+<tr>
+<td style="text-align:left">start container</td>
+<td style="text-align:center">docker start <container_id></container_id></td>
+</tr>
+<tr>
+<td style="text-align:left">restart container</td>
+<td style="text-align:center">docker restart <container_id></container_id></td>
+</tr>
+<tr>
+<td style="text-align:left">stop container</td>
+<td style="text-align:center">docker stop <container_id></container_id></td>
+</tr>
+<tr>
+<td style="text-align:left">signal kill container</td>
+<td style="text-align:center">docker kill <container_id></container_id></td>
+</tr>
+<tr>
+<td style="text-align:left">在某个container执行命令</td>
+<td style="text-align:center">docker exec -it <container_id> <command_id></command_id></container_id></td>
+</tr>
+<tr>
+<td style="text-align:left">inspect network</td>
+<td style="text-align:center">docker network inspect [OPTIONS] NETWORK</td>
+</tr>
+<tr>
+<td style="text-align:left">create network</td>
+<td style="text-align:center">docker network create —driver bridge <name></name></td>
+</tr>
+<tr>
+<td style="text-align:left">list network</td>
+<td style="text-align:center">docker network ls</td>
+</tr>
+<tr>
+<td style="text-align:left">————————————</td>
+<td style="text-align:center">————————————</td>
+</tr>
+</tbody>
+</table>
+<p>使用container_id的地方也可以使用container_name。</p>
+<h2 id="创建image">创建image</h2><p>创建一个image，就是创建一个模板，里面定义了这个image包含了哪些内容。这个模板叫做Dockerfile。有了Dockerfile之后，就可以通过命令docker build <directory that="" contains="" dockerfile="">来生成image了。这个过程就是根据Dockerfile来执行各种操作。下面是一个Nginx的Dockerfile:<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">FROM</span> debian:jessie</span><br><span class="line"><span class="built_in">MAINTAINER</span> koly li &lt;kolyjjj@foxmail.com&gt;</span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">./nginx_signing.key /tmp/</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod <span class="number">755</span> /tmp/nginx_signing.key</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">apt-key add /tmp/nginx_signing.key</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/debian/ jessie nginx"</span> &gt;&gt; /etc/apt/sources.list</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">apt-get update &amp;&amp; apt-get install -y curl vim nginx &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">mkdir -p /var/www/html</span><br><span class="line"></span><span class="comment"># backup the default.conf file</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_bac</span><br><span class="line"></span><span class="built_in">ADD</span> <span class="bash">global.conf /etc/nginx/conf.d/</span></span><br></pre></td></tr></table></figure></directory></p>
+<p>最前面的大写的是docker提供的命令，<a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="external">这里</a>是docker file的文档。</p>
+<h2 id="坑和tips">坑和tips</h2><ul>
+<li>在mac电脑上使用docker时，会创建一个vbox的虚拟机，然后在这个虚拟机里面操作。在做docker nginx时，发现mount的volume，在host上改动之后，container里面的nginx无法及时发现改动。比如在host里面更新了index.html文件，但是更新的内容没有出现在浏览器里。google之后发现是一个virtual<br>box的bug。github在<a href="https://github.com/kolyjjj/docker-nginx" target="_blank" rel="external">这里</a>。关于那个bug的讨论在<a href="https://github.com/nginxinc/docker-nginx/issues/24" target="_blank" rel="external">这里</a></li>
+<li>在ubuntu里面使用docker，在debian:jessie里使用apt-get install tomcat7，结果启动container的时候发现stdout的输出表示启动tomcat没有成功，但是实际上tomcat却已经启动起来了。<a href="https://github.com/docker/docker/issues/6800" target="_blank" rel="external">这里</a>是关于这个issue的讨论。原因是tomcat的启动脚本需要一些权限，而docker container默认并没有这些权限。解决方案是在docker run的时候加上—cap-add<br>SYS_PTRACE。或者—privileged=true。或者不使用apt-get install tomcat来安装。</li>
+<li>docker-compose build，在mac上使用的时候，没有执行mysql的初始化脚本。简单来说，在使用mysql这个docker image的时候，可以将初始化的sql或者sh文件放在container的/docker-entrypoint-initdb.d这个文件夹下面，然后mysql这个image会在启动container的时候执行这些脚本，进行数据库的初始化。在mac上，使用docker build没有问题，但是使用docker-compose build却有问题。换到ubuntu上，都没有问题。解决方案就是使用ubuntu咯。</li>
+<li>如果使用docker run的时候带上-it参数，则可以使用Ctrl+c来结束container。</li>
+<li>在创建image时，原始镜像里面没有vi，那么可以使用sed来做文字的替换，比如将“daemonize no”替换为“daemonize yes”：<code>set -i &#39;s/daemonize no/daemonize yes/&#39; /usr/local/redis/reids-3.0.6/redis.conf</code></li>
+<li>使用net而不是使用container link</li>
+<li>debian:jessie这个image还是挺好用的</li>
+<li>在写docker-compose.yml时，对每个service指定container_name</li>
+<li>将数据放在container的volume里，别的container如果要使用，在docker-compose.yml里用volumes_from</li>
+</ul>
+<p>参考资料：<br>[1] <a href="://docs.docker.com/">docker官方文档</a></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2015/12/16/haskell中的IO操作/">
+        haskell中的IO操作 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
