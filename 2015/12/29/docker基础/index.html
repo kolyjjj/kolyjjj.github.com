@@ -223,7 +223,13 @@
 <h2 id="docker是什么？">docker是什么？</h2><p>一个工具，这个工具可以帮助你创建一个虚拟机。然后你可以对这个虚拟机环境进行各种配置。既然建立了虚拟机，就可以实现对虚拟机的管理，比如start，restart，stop等。还可以把这些虚拟机怎么建立的发布在网上，让大家都可以用。比如你想要一台java环境的ubuntu，以前你需要自己搞一个虚拟机，然后在里面安装java，然后配置网络映射。现在就只需要使用docker，然后用一个命令，就可以拿到已经安装了java的ubuntu，然后起一个虚拟机，同时映射网络。</p>
 <h2 id="docker中的概念">docker中的概念</h2><ul>
 <li>docker engine，负责在系统中安装docker，创建和运行docker container。</li>
-<li>image，相当于一个模板，虚拟机根据这个模板来进行配置。比如模板里面写了，要ubuntu，那就去下一个ubuntu，要tomcat，就去下一个，然后进行配置。</li>
+<li>image，相当于一个模板，虚拟机根据这个模板来进行配置。比如模板里面写了，要ubuntu，那就去下一个ubuntu，要tomcat，就去下一个，然后进行配置。每个image包含了多个layer。在创建image的时候，每一条指令都会创建一层layer，这些指令可以是：<ul>
+<li>执行一个命令(RUN)</li>
+<li>添加一个文件或者目录</li>
+<li>创建一个环境变量</li>
+<li>指定container运行时执行的指令<br>最终，多个layer会通过unio file system被合并成为一个image。</li>
+</ul>
+</li>
 <li>container，这个是虚拟机的容器。就是说根据上面所说的image创建的虚拟机就跑在这里面。</li>
 <li>docker hub，官方的下载各种image的地方。地址在这里：<a href="https://hub.docker.com/" target="_blank" rel="external">hub.docker.com</a></li>
 <li>volume, 是一个mount point，就是可以给container指定一个volume，然后这个volume会跟host里面的某个地方(文件或者文件夹)映射起来。可以显示指定host里面对应的文件夹或文件，如果没有显示指定，那么docker会自动指定一个。</li>
