@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Javascript后端开发学习 | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <!-- <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <div class="author">
+            <a href="/about">
+              <img src="/img/koly.png" alt="author"/>
+            </a>
+            <p>
+              koly
+            </p>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/TECH/" class="animsition-link">TECH<small>(13)</small></a></li>
+				    
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(0)</small></a></li>
+				    
+              </ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-01-26T13:51:09.000Z" itemprop="datePublished">
+          2016-01-26
+      </time>
+    
+    
+    | 
+    <a href='/tags/javascript-server/'>javascript server</a>
+    
+    
+</span>
+
+                <h1>Javascript后端开发学习</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>之前一直在用Java写后端，一直使用的是MVC模式，于是便好奇。不用Java，没有MVC，会是什么样子。考虑过Rails，只是出了学习Rails这个框架外，还需要学习诸如Ruby，Coffee之类的语言，而关键是Rails在debug模式下比较慢。所以没有什么动力。后面NodeJS出来了，然后大家开始用Javascript来写后端了。后面无意间发现了一个<a href="cnodejs.org">NodeJS中文社区</a>，跟Ruby中文社区一样，还算比较活跃。于是就想着用NodeJS来写写试试，加之又想试试ECMAScript 2015，于是便有了这次尝试。<a id="more"></a></p>
+<p>所有的代码都在github上，然后博客主要就是记录干了些什么事情，遇到了些什么问题，权当流水账了。也不会去将各个技术逐个从头讲起。Github repo是<a href="https://github.com/kolyjjj/forum" target="_blank" rel="external">forum</a>。</p>
+<p>总体上的需求大概是希望能实现一个基本的论坛，用户可以注册，登录，发帖，评论。具体的需求会在每一步的时候记录。</p>
+<h2 id="架子">架子</h2><p>首先确定了NodeJS，则需要安装Node。Mac电脑，官网下载了node 4.2.6。后面还可以考虑使用<a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a>来管理多个node版本。装好之后就有了npm了。使用<code>npm init</code>来初始化项目：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir forum&#10;cd forum&#10;npm init</span><br></pre></td></tr></table></figure></p>
+<p>使用app.js作为入口文件(npm init执行后会看到一系列问题，好好回答，在回答entry point的时候输入app.js)。</p>
+<p>然后就想在express和koajs之前选一个。最后选择了express，想着它比较基础、稳定一些。安装express: </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save</span><br></pre></td></tr></table></figure>
+<p>安装好了之后，根据express上的<a href="http://expressjs.com/en/starter/hello-world.html" target="_blank" rel="external">hello world</a>文档，写了app.js的内容。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Express <span class="keyword">from</span> <span class="string">'express'</span>; </span><br><span class="line"><span class="keyword">let</span> express = Express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">        res.send(<span class="string">'Hello World!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'Example app listening on port 3000!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>使用了ES6。但是这时使用<code>node app.js</code>不行，因为node还不支持ES6。这时候就需要<a href="https://babeljs.io/" target="_blank" rel="external">babeljs</a>来救场了。此处为第一次commit。</p>
+<p>要使用babeljs，怎么用呢？直接用babel提供的<a href="https://babeljs.io/docs/setup/#babel_cli" target="_blank" rel="external">cli</a>？好像不太合适。不然找一个构建工具好了，除了用babel之外还可以做些别的事情。说到前端构建，自然就想到了<a href="http://gulpjs.com/" target="_blank" rel="external">gulpjs</a>，不为什么，只因为它比grunt要新，据说也更快。使用gulp就需要写Gulpfile，既然准备用ES6，那么gulpfile不至于用ES5来写吧。于是找了找怎么在gulpfile里使用ES6，发现也可以使用babel。整个过程大概是这样的:</p>
+<ul>
+<li>安装gulpjs，注意必须是gulp3.9或以上。<code>npm install gulp -g</code>，<code>npm install gulp --save-dev</code></li>
+<li>安装babel相关lib。<code>npm install babel-core babel-preset-es2015 —save-dev</code>，<code>npm install  gulp-babel —save-dev</code></li>
+<li>在项目目录下创建.babelrc, 然后写入<code>{&quot;presets&quot;:[&quot;es2015&quot;]}</code></li>
+<li>在项目目录下创建gulpfile.babel.js，然后就可以在里面使用ES6了</li>
+</ul>
+<p>babelrc的内容：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">presets</span>": <span class="value">[<span class="string">"es2015"</span>]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>gulpfile.babel.js的内容：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> gulp <span class="keyword">from</span> <span class="string">'gulp'</span>;</span><br><span class="line"><span class="keyword">import</span> babel <span class="keyword">from</span> <span class="string">'gulp-babel'</span>;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'build'</span>,  () =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([<span class="string">'app.js'</span>, <span class="string">'src/**/*.js'</span>])</span><br><span class="line">        .pipe(babel(&#123;</span><br><span class="line">            presets: [<span class="string">'es2015'</span>]</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'dist'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以使用<code>gulp build</code>来将ES6编译成ES5了。编译之后的文件放在了dist目录下，可以使用<code>node dist/app.js</code>来启动项目。结果发现出错了，找不到express。排错后发现<code>import * as Express from &#39;express&#39;;</code>有问题，应该是<code>import express from &#39;express&#39;</code>。自然后面的Express也应该改成express。而<code>let express = Express();</code>改成<code>let app =
+express();</code>这样就没问题了。项目启动之后，使用Chrome访问localhost:3000就可以看到输出了。除了使用浏览器之外，还可以使用<a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop" target="_blank" rel="external">postman</a>这个工具来发请求，后面的post，delete等请求在手动测试的时候都使用了postman。此处为第二次提交。</p>
+<p>使用<code>node dist/app.js</code>是可以的，只是每次代码有变动，都需要手动Ctrl+C停止，然后重新启动。这种事情不可以自动化吗？当然可以了。于是一番搜索，发现了nodemon，翻译过来就是没有demon。既然用了gulp，就一用到底，使用了<a href="https://github.com/JacksonGariety/gulp-nodemon" target="_blank" rel="external">gulp nodemon</a>。又一顿install:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &#8212;save-dev gulp-file-cache&#10;npm install &#8212;save-dev gulp-nodemon</span><br></pre></td></tr></table></figure></p>
+<p>然后在gulpfile里面增加了start任务来启动app，其依赖于compile任务。compile任务是在之前的build任务基础上进行了改动，然后名字也改成了compile。所以现在的流程就是：改动代码-&gt;自动compile-&gt;改动dist里面的文件-&gt;使用nodemon跑dist里面的app.js。其中用到了file cache(文件缓存)，这样在编译ES6的时候，对于没有改动的文件就不需要编译了。此处为第三次提交。</p>
+<p>途中，还出现了找不到module的问题。原因是使用<code>gulp.src([&#39;app.js&#39;, &#39;src/**/*.js&#39;])</code>不会保留目录结构，所以<code>import routers from &#39;./src/routers&#39;;</code>是找不到src/routers.js的，可以在dist目录里面看到app.js和routers.js在同一个目录下。一番搜索，发现<code>gulp.src([&#39;app.js&#39;, &#39;src/**/*.js&#39;], {base: &#39;.&#39;})</code>就可以保留目录结构了。</p>
+<p>至此，就搭建好了基本的开发环境。有了本地的一个类似hot deploy的server，也有了一个ES6的编译机制。同时，截至目前为止，发现用得上ES6的地方也就是：</p>
+<ul>
+<li>使用匿名函数</li>
+<li>使用import以及export</li>
+<li>使用const，let而不是var<br>后面应该还会有更多使用到的地方。</li>
+</ul>
+<h2 id="将routes分散到各个功能模块中去">将routes分散到各个功能模块中去</h2><p>routes全部放在app.js中觉得不太好，每个模块应该负责管理自己的routes。这样维护起来也方便一些。于是使用<a href="http://expressjs.com/en/guide/routing.html#express-router" target="_blank" rel="external">express-router</a>将routes放到了模块里。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> routers <span class="keyword">from</span> <span class="string">'./src/routers'</span>;</span><br><span class="line">app.use(<span class="string">'/api'</span>, routers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// src/routers.js</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</span><br><span class="line"><span class="keyword">import</span> postRouter <span class="keyword">from</span> <span class="string">'./posts/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"></span><br><span class="line">router.use(<span class="function"><span class="keyword">function</span> <span class="title">timeLog</span><span class="params">(req, res, next)</span></span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Time: '</span>, <span class="built_in">Date</span>.now());</span><br><span class="line">            next();</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">        res.send(<span class="string">'hello, here is the api'</span>);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">router.use(<span class="string">'/posts/'</span>, postRouter); </span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure></p>
+<p>当访问/api的时候，会由routers.js文件来处理。在routers.js文件里面，又设定了当访问/posts/的时候，由posts/router.js处理。这样就将post/路径对应的处理操作放到了src/posts文件夹下面。一个文件夹就是一个功能模块，而routers.js则扮演了一个路由分发者的角色。<br>还有，最后的<code>export default router</code>写成<code>export router</code>，会报错的。为什么呢？来看看export的语法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; name1, name2, …, nameN &#125;;</span><br><span class="line"><span class="keyword">export</span> &#123; variable1 <span class="keyword">as</span> name1, variable2 <span class="keyword">as</span> name2, …, nameN &#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> name1, name2, …, nameN; <span class="comment">// also var</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> name1 = …, name2 = …, …, nameN; <span class="comment">// also var, const</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> expression;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="params">(…)</span> </span>&#123; … &#125; <span class="comment">// also class, function*</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">name1</span><span class="params">(…)</span> </span>&#123; … &#125; <span class="comment">// also class, function*</span></span><br><span class="line"><span class="keyword">export</span> &#123; name1 <span class="keyword">as</span> <span class="keyword">default</span>, … &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> * from …;</span><br><span class="line"><span class="keyword">export</span> &#123; name1, name2, …, nameN &#125; from …;</span><br><span class="line"><span class="keyword">export</span> &#123; import1 <span class="keyword">as</span> name1, import2 <span class="keyword">as</span> name2, …, nameN &#125; from …;</span><br></pre></td></tr></table></figure></p>
+<p>简单来说，没有<code>export router</code>这个语法，可以写成<code>expore {router}</code>，得加上一个引号。同时，写成<code>export default const router = ...</code>也是不行的。为什么呢？<code>export default</code>后面跟着的是一个expression，就是一个可以产生值的东西，比如上面的router代表了一个值，对它进行evaluate可以得到值。如果有=号了就表示是一个statement，这个执行某些操作，其本身在javascript里面是不会产生值的。</p>
+<h2 id="数据库访问">数据库访问</h2><p>数据总是要存到一个地方的。于是便有了数据库。由于是用node，所以第一时间想到了mongodb，同时也想试试NoSQL的感觉，所以就用了。选择了mongodb，自然要选择一个工具来同它交流。在简单的比较<a href="https://github.com/mongodb/node-mongodb-native?_ga=1.95774302.336281007.1453710505" target="_blank" rel="external">MongoClient</a>和<a href="http://mongoosejs.com" target="_blank" rel="external">Mongoose</a>之后，还是想先用一个ORM，先看看这种写法会是什么样的，后面再来对比MongoClient。<br>要用mongodb，首先得装一个mongodb，由于之前使用过<a href="https://www.docker.com/" target="_blank" rel="external">docker</a>，所以就直接用docker的<a href="https://hub.docker.com/_/mongo/" target="_blank" rel="external">mongodb image</a>。装好之后就可以使用mongodb了，在mac上，不能直接使用localhost，可以用docker-machine ip default来查看默认的docker machine的地址。此时其地址是192.128.99.100。<br>有了数据库之后，就开始安装Mongoose：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mongoose</span><br></pre></td></tr></table></figure></p>
+<p>这里没有<code>--save-dev</code>，因为产品代码也需要mongoose。装好之后就可以使用了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> mongoose <span class="keyword">from</span> <span class="string">'mongoose'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dburl = <span class="string">'mongodb://192.168.99.100/test'</span>;</span><br><span class="line">mongoose.connect(dburl);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="keyword">const</span> blogSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">      title: <span class="built_in">String</span>, </span><br><span class="line">      author: <span class="built_in">String</span>, </span><br><span class="line">      body: <span class="built_in">String</span>,</span><br><span class="line">      comments: [&#123;body: <span class="built_in">String</span>, date: <span class="built_in">Date</span>&#125;],</span><br><span class="line">      date: &#123;type: <span class="built_in">Date</span>, <span class="keyword">default</span>: <span class="built_in">Date</span>.now&#125;,</span><br><span class="line">      hidden: <span class="built_in">Boolean</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">          votes: <span class="built_in">Number</span>,</span><br><span class="line">      favs: <span class="built_in">Number</span></span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Blog = mongoose.model(<span class="string">'Blog'</span>, blogSchema);</span><br><span class="line"><span class="keyword">let</span> aBlog = <span class="keyword">new</span> Blog(&#123;</span><br><span class="line">    title: <span class="string">'first blog'</span>,</span><br><span class="line">    author: <span class="string">'koly'</span>,</span><br><span class="line">    body: <span class="string">'What a beautiful world'</span>,</span><br><span class="line">    comments: [&#123;body: <span class="string">'a comment'</span>, date: <span class="built_in">Date</span>.now()&#125;],</span><br><span class="line">    hidden: <span class="literal">false</span>,</span><br><span class="line">    meta: &#123;</span><br><span class="line">        votes: <span class="number">1</span>,</span><br><span class="line">    favs: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 此处即为保存</span></span><br><span class="line">aBlog.save();</span><br></pre></td></tr></table></figure></p>
+<h2 id="将配置放到单独的文件里">将配置放到单独的文件里</h2><p>上面提到本地有一个数据库的地址，是192.168.99.100。本地的是这个，但是产品环境上很可能不是这个了。对于肯定会变化的东西，自然要提前准备应对变化。方式就是使用某种机制可以方便的将可变的地址切换。于是想到首先将配置提出来，放到一个文件里面，然后通过gulp根据不同的参数将不同的配置文件打到包里。<br>于是，配置被放到了db_config.js里：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// env/local/db_config.js</span></span><br><span class="line"><span class="keyword">const</span> db = &#123;</span><br><span class="line">  url: <span class="string">'mongodb://192.168.99.100/test'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> db;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在使用的时候就变成：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dbConfig <span class="keyword">from</span> <span class="string">'../../env/db_config'</span>;</span><br><span class="line">mongoose.connect(dbConfig.url);</span><br></pre></td></tr></table></figure></p>
+<p>每个环境有自己的一个配置文件，放在自己的文件夹里。比如local就是local文件夹，配置文件就是env/local/db_config.js。在编译的时候需要根据参数将对应环境的配置打进去，具体命令是<code>gulp compile -env=prod</code>。如果没有指定，则默认是local，会使用env/local/下面的db_config.js。接收命令行参数，使用了<a href="https://github.com/substack/minimist" target="_blank" rel="external">npm minimist</a>库。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> minimist <span class="keyword">from</span> <span class="string">'minimist'</span>;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">const</span> cache = <span class="keyword">new</span> Cache();</span><br><span class="line"><span class="keyword">const</span> knownOptions = &#123;</span><br><span class="line">    string: <span class="string">'env'</span>,</span><br><span class="line">    <span class="keyword">default</span>: &#123; env: process.env.NODE_ENV || <span class="string">'local'</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = minimist(process.argv.slice(<span class="number">2</span>), knownOptions);</span><br><span class="line"><span class="keyword">const</span> environmentPath = <span class="string">`env/<span class="subst">$&#123;options.env&#125;</span>/*.js`</span>;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'env'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">`<span class="subst">$&#123;environmentPath&#125;</span>`</span>)</span><br><span class="line">          .pipe(cache.filter())</span><br><span class="line">          .pipe(babel())</span><br><span class="line">          .pipe(cache.cache())</span><br><span class="line">          .pipe(gulp.dest(<span class="string">'dist/env'</span>));</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'compile'</span>, [<span class="string">'env'</span>], () =&gt; &#123;</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure></p>
+<p>其中在给environmentPath赋值的时候使用了es6中的模板字符串。</p>
+<h2 id="接收json格式的post数据">接收json格式的post数据</h2><p>想要在express中接收并解析json数据，搜索之后发现需要一个<a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">body parser</a>。于是果断引入，安装。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bodyParser <span class="keyword">from</span> <span class="string">'body-parser'</span>;</span><br><span class="line">app.use(<span class="string">'/api'</span>, bodyParser.json());</span><br></pre></td></tr></table></figure></p>
+<p>这样发送到/api的请求都会经bodyParser解析一遍。既然是body parser，自然解析的就是请求的body了。之后通过<code>req.body</code>拿到解析之后的数据，存入数据库就好了。由于在这里没有遇到什么坑，所以就简略了。</p>
+<h2 id="对请求加一些处理条件">对请求加一些处理条件</h2><p>首先Content-Type得是application/json。这个针对post, put, patch, delete，不针对get。所以：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/routers.js</span></span><br><span class="line"></span><br><span class="line">router.all(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span> <span class="title">onlyAllowJson</span><span class="params">(req, res, next)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> method = req.method;</span><br><span class="line">  <span class="keyword">if</span> (lodash.includes([<span class="string">'GET'</span>], method)) next();</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> contentType = req.get(<span class="string">'Content-Type'</span>);</span><br><span class="line">      <span class="keyword">if</span> (contentType &amp;&amp; contentType.includes(<span class="string">'application/json'</span>)) </span><br><span class="line">         next();</span><br><span class="line">      <span class="keyword">else</span> </span><br><span class="line">      res.status(<span class="number">400</span>).send(<span class="string">'wrong Content-Type, should be Content-Type:application/json, yours is '</span> + contentType);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>其中的<code>lodash</code>是引入了<a href="https://www.npmjs.com/package/lodash" target="_blank" rel="external">npm lodash</a>。</p>
+<p>其次，如果post请求的body是空，那么也不处理：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/routers.js</span></span><br><span class="line">router.post(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span> <span class="title">postShouldHasContent</span><span class="params">(req, res, next)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (req.body &amp;&amp; !lodash.isEmpty(req.body)) </span><br><span class="line">  next();</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  res.status(<span class="number">400</span>).send(<span class="string">'post should contain valid body'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建blog的时候需要进行验证">创建blog的时候需要进行验证</h2><p>在创建blog的时候，需要一些基本的验证。比如说blog的标题不能为空，作者不能为空，作者的名字的长度需要进行限制。这些验证操作都需要在数据存入数据库之前完成。还好，Mongoose提供了这样的验证机制。简单来说就是在定义schema的时候同时声明验证条件及验证的错误信息。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> blogSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">  title:&#123;</span><br><span class="line">    type: <span class="built_in">String</span>,</span><br><span class="line">    required: <span class="literal">true</span>,</span><br><span class="line">    minlength: <span class="number">4</span></span><br><span class="line">  &#125;, </span><br><span class="line">  author: <span class="built_in">String</span>, </span><br><span class="line">  body: <span class="built_in">String</span>,</span><br><span class="line">  comments: [&#123;body: <span class="built_in">String</span>, date: <span class="built_in">Date</span>&#125;],</span><br><span class="line">  date: &#123;type: <span class="built_in">Date</span>, <span class="keyword">default</span>: <span class="built_in">Date</span>.now&#125;,</span><br><span class="line">  hidden: <span class="built_in">Boolean</span>,</span><br><span class="line">  meta: &#123;</span><br><span class="line">    votes: <span class="built_in">Number</span>,</span><br><span class="line">    favs: <span class="built_in">Number</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>可以看到title的后面从String变成了一个对象，这个对象定义了title的类型和验证条件。这里required表示title必须有值，而minlength表示title的长度至少为4个字符。<br>其余的代码都没有变化，只是在调用的时候需要加上一些错误处理：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">postsdb.save(req.body).then((data) =&gt; &#123;</span><br><span class="line">  res.status(<span class="number">200</span>).json(&#123;id: data._id&#125;);</span><br><span class="line">&#125;, (err)=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'creating post error'</span>, err);</span><br><span class="line">  <span class="keyword">if</span> (<span class="string">'ValidationError'</span> === err.name)</span><br><span class="line">    res.status(<span class="number">400</span>).send();</span><br><span class="line">  <span class="keyword">else</span> res.status(<span class="number">500</span>).json(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>首先要在log里面记录错误信息，然后如果是ValidationError的话，就返回400，表示bad request。<br>光是返回400还不行，还得有错误信息啊，不然谁知道哪里错了啊。加上title的错误信息，首先在定义Schema的时候：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title:&#123;</span><br><span class="line">   type: <span class="built_in">String</span>,</span><br><span class="line">   required: <span class="string">'&#123;PATH&#125; cannot be empty.'</span>, <span class="comment">// PATH must be uppercase</span></span><br><span class="line">   minlength: <span class="number">4</span></span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure></p>
+<p>之前是required: true，现在变成一个字符串，表示title不能为空，如果是空的话，会返回那个字符串作为错误信息。字符串中的<code>{PATH}</code>表示当前的字段，这里就是title,这里要注意，path必须是全部大写，不然不会进行替换。同时在router里面处理一下返回的错误信息：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">'ValidationError'</span> === err.name) &#123;</span><br><span class="line">     <span class="keyword">let</span> errorMessages = composeErrorJson(err.errors);</span><br><span class="line">     res.status(<span class="number">400</span>).json(errorMessages);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> composeError的目的就是将错误信息重新组织一下，变成下面的样子：<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"title"</span>: <span class="string">"title cannot be empty."</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>之后就可以增加更多的验证了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">author: &#123;</span><br><span class="line">   type: <span class="built_in">String</span>,</span><br><span class="line">   required: <span class="string">'&#123;PATH&#125; cannot be empty.'</span>, </span><br><span class="line">   minlength: [<span class="number">2</span>, <span class="string">'&#123;PATH&#125; should be more than 2 characters.'</span>],</span><br><span class="line">   maxlength: [<span class="number">40</span>, <span class="string">'&#123;PATH&#125; should be less than 40 characters.'</span>]</span><br><span class="line"> &#125;, </span><br><span class="line"> content: &#123;</span><br><span class="line">   type: <span class="built_in">String</span>,</span><br><span class="line">   required: <span class="string">'&#123;PATH&#125; cannot be empty.'</span>,</span><br><span class="line">   minlength: [<span class="number">15</span>, <span class="string">'&#123;PATH&#125; should be more than 15 characters.'</span>]</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure></p>
+<h2 id="删除blog">删除blog</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deleteOne(id) &#123;</span><br><span class="line">   <span class="keyword">return</span> Blog.findByIdAndRemove(id);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>mongoose提供了先find然后remove的方法，并不是直接remove。然后之前判断Content-Type的地方，需要将delete方法排除掉：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (lodash.includes([<span class="string">'GET'</span>, <span class="string">'DELETE'</span>], method)) next();</span><br></pre></td></tr></table></figure></p>
+<p>很简单，只需要在GET后加上DELETE就行了。</p>
+<h2 id="测试">测试</h2><p>测试分为好几种，有单元测试、集成测试、功能测试等。考虑到这里只有简单的CRUD，逻辑上并不是十分复杂，所以单元测试和集成测试就不写了，只写api测试（也算是一种功能测试啦）了。api测试也有一些工具可以选用，比如<a href="http://frisbyjs.com/" target="_blank" rel="external">frisby</a>，<a href="https://github.com/visionmedia/supertest" target="_blank" rel="external">supertest</a>等。考虑到supertest可以跟<a href="http://mochajs.org/" target="_blank" rel="external">mocha</a>配合，而写单元测试我也倾向于mocha。为了风格一致，所以就选用了supertest作为api测试的工具。这里提一下supertest和<a href="http://visionmedia.github.io/superagent/" target="_blank" rel="external">superagent</a>。后者是用来发送ajax请求的，而supertest使用了superagent，所以superagent的方法在使用supertest的时候也可以用。<br>写测试使用mocha，跑测试也可以用mocha。当然首先就要安装了。由于使用了gulp，并且想讲测试的命令也用gulp来跑，所以选择了<a href="https://github.com/sindresorhus/gulp-mocha" target="_blank" rel="external">gulp-mocha</a>。安装：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-mocha</span><br></pre></td></tr></table></figure>
+<p>使用<code>gulp test</code>来跑测试：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'test'</span>, [<span class="string">'compile'</span>], () =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(<span class="string">'tmp/test/**/*.spec.js'</span>, &#123;read:<span class="literal">false</span>&#125;)</span><br><span class="line">  <span class="comment">// gulp-mocha needs filepaths so you can't have any plugins before it</span></span><br><span class="line">  .pipe(mocha(&#123;reporter:<span class="string">'nyan'</span>&#125;))</span><br><span class="line">  .pipe(exit());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>上面的<code>exit()</code>是使用了<a href="https://github.com/dreame4/gulp-exit" target="_blank" rel="external">gulp exit</a>来退出，不然的话，跑完测试之后，server还是处于已启动的状态，不会自己关闭。这算是一个小bug，据说直接使用mocha来跑的话，不会出现这个问题。所以这算是gulp-mocha的bug。<br>test依赖于compile，之前的compile只编译了src下面的代码，现在需要编译test下面的了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> gulp.task(<span class="string">'compile'</span>, [<span class="string">'env'</span>], () =&gt; &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> gulp.src([<span class="string">'app.js'</span>, <span class="string">'src/**/*.js'</span>, <span class="string">'test/**/*.js'</span>], &#123;base: <span class="string">'.'</span>&#125;)</span><br><span class="line">  .pipe(cache.filter())</span><br><span class="line">  .pipe(babel(&#123;</span><br><span class="line">    presets: [<span class="string">'es2015'</span>]</span><br><span class="line">  &#125;))</span><br><span class="line">  .pipe(cache.cache())</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'tmp'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>安装supertest：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install supertest --save-dev</span><br></pre></td></tr></table></figure></p>
+<p>建立测试目录，和测试文件，然后写下第一个测试：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">'supertest'</span>;</span><br><span class="line"><span class="keyword">import</span> app <span class="keyword">from</span> <span class="string">'../../app'</span>;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'GET /posts'</span>, ()=&gt;&#123;</span><br><span class="line">  it(<span class="string">'should get one post'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span></span>&#123;</span><br><span class="line">    request(app)</span><br><span class="line">      .get(<span class="string">'/api/posts'</span>)</span><br><span class="line">      .expect(<span class="string">'Content-Type'</span>, <span class="regexp">/json/</span>)</span><br><span class="line">      .expect(<span class="number">200</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这里需要app.js里面定义的app，所以需要将它export出来：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> app;</span><br></pre></td></tr></table></figure></p>
+<p>然后使用<code>gulp test</code>就可以执行测试了。<br>跑成功后，就可以继续添加更多测试了，比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> aPost = &#123;</span><br><span class="line">  <span class="string">"title"</span>:<span class="string">"A new Post B"</span>,</span><br><span class="line">  <span class="string">"author"</span>:<span class="string">"koly"</span>,</span><br><span class="line">  <span class="string">"content"</span>:<span class="string">"Hello this is a post."</span>,</span><br><span class="line">  <span class="string">"comments"</span>:[],</span><br><span class="line">  <span class="string">"hidden"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">"meta"</span>: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">it(<span class="string">'should create one post'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span></span>&#123;</span><br><span class="line">   request(app)</span><br><span class="line">   .post(<span class="string">'/api/posts'</span>)</span><br><span class="line">   .send(aPost)</span><br><span class="line">   .expect(<span class="string">'Content-Type'</span>, <span class="regexp">/json/</span>)</span><br><span class="line">   .expect((res)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'creating one post'</span>);</span><br><span class="line">    res.body.should.have.property(<span class="string">'id'</span>);</span><br><span class="line">   &#125;)</span><br><span class="line">   .expect(<span class="number">200</span>, done);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>上面的<code>res.body.should.have.property(&#39;id)</code>使用了<a href="https://github.com/shouldjs" target="_blank" rel="external">shouldjs</a>，看起来很人性。其次，done放在最后的expect(200, done)才有效果，不然没有用，会导致测试跑不过。然后function(done)不能写成匿名函数形式，不然在babel编译之后mocha找不到done，也就没有作用。当然done放在end里面也是可以的，具体参看<a href="https://github.com/kolyjjj/forum/commit/ef3038ff450175b5713c5eee8a1aaef3b31b2320" target="_blank" rel="external">代码</a>。<br>还有一个问题是，测试里面各种创建blog，把数据库给污染了怎么办呢？如何做数据库回滚呢？考虑到这是api层次的测试，如果引入mongodb的任何connection会觉得不是这个层次该做的事情。api层次的事情就让api来解决。所以最后只能当作数据库里面原来就什么数据也没有，跑测试的时候创建了数据。跑完之后把数据删掉。于是有了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">after(<span class="function"><span class="keyword">function</span><span class="params">(done)</span></span>&#123;</span><br><span class="line">  request(app)</span><br><span class="line">  .get(<span class="string">'/api/posts'</span>)</span><br><span class="line">  .expect(<span class="string">'Content-Type'</span>, <span class="regexp">/json/</span>)</span><br><span class="line">  .end((err, res)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">    <span class="keyword">let</span> deleteFuncs = [];</span><br><span class="line">    res.body.forEach((value)=&gt;&#123;</span><br><span class="line">      deleteFuncs.push((cb)=&gt;&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'deleting'</span>, value._id);</span><br><span class="line">        request(app)</span><br><span class="line">        .delete(<span class="string">'/api/posts/'</span>+value._id)</span><br><span class="line">        .expect(<span class="number">200</span>, cb);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    async.series(deleteFuncs, done);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>after函数会在所有测试跑完之后执行。其中使用了<a href="https://github.com/caolan/async" target="_blank" rel="external">asyncjs</a>来执行具体的删除动作。<br>测试就先这样了。</p>
+<h2 id="修改blog">修改blog</h2><p>既然有了测试，那么就尝试一下TDD(Test Driven Developmen)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'should update a post'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span></span>&#123;</span><br><span class="line">   request(app)</span><br><span class="line">   .post(<span class="string">'/api/posts'</span>)</span><br><span class="line">   .send(aPost)</span><br><span class="line">   .expect(<span class="string">'Content-Type'</span>, <span class="regexp">/json/</span>)</span><br><span class="line">   .expect(<span class="number">200</span>)</span><br><span class="line">   .end((err, res)=&gt;&#123;</span><br><span class="line">     <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">     request(app)</span><br><span class="line">     .put(<span class="string">'/api/posts/'</span> + res.body.id)</span><br><span class="line">     .send(&#123;</span><br><span class="line">      <span class="string">"title"</span>:<span class="string">"updated post"</span>,</span><br><span class="line">      <span class="string">"author"</span>:<span class="string">"another author"</span>,</span><br><span class="line">      <span class="string">"content"</span>:<span class="string">"updated posts content"</span></span><br><span class="line">     &#125;)</span><br><span class="line">     .expect(<span class="string">'Content-Type'</span>, <span class="regexp">/json/</span>)</span><br><span class="line">     .expect((res)=&gt;&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'updating a post'</span>);</span><br><span class="line">       <span class="keyword">let</span> body = res.body;</span><br><span class="line">       body.title.should.be.exactly(<span class="string">"updated post"</span>);</span><br><span class="line">       body.author.should.be.exactly(aPost.author); <span class="comment">// author cannot be udpated</span></span><br><span class="line">       body.content.should.be.exactly(<span class="string">"updated posts content"</span>);</span><br><span class="line">     &#125;)</span><br><span class="line">     .expect(<span class="number">200</span>, done);</span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>就是先创建一个post，然后去update，updata的返回时新修改的结果，author字段无法修改。<br>实现分为两步，第一步添加路由，第二步数据库操作：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.put(<span class="string">'/:id'</span>, (req, res)=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'request body for updating post'</span>, req.body);</span><br><span class="line">  postsdb.update(req.params.id, req.body).then((data)=&gt;&#123;</span><br><span class="line">    createResponseWhenPostNotFound(data, req.params.id, res, (data)=&gt;&#123;</span><br><span class="line">      res.status(<span class="number">200</span>).json(data);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, (err)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">'ValidationError'</span> === err.name) &#123;</span><br><span class="line">      <span class="keyword">let</span> errorMessages = composeErrorJson(err.errors);</span><br><span class="line">      res.status(<span class="number">400</span>).json(errorMessages);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> res.status(<span class="number">500</span>).json(err);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">update(id, data) &#123;</span><br><span class="line">   <span class="keyword">return</span> Blog.findByIdAndUpdate(id, &#123;</span><br><span class="line">     title: data.title,</span><br><span class="line">     content: data.content</span><br><span class="line">   &#125;, &#123;</span><br><span class="line">     <span class="keyword">new</span>: <span class="literal">true</span>,</span><br><span class="line">     runValidators: <span class="literal">true</span></span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p> 这里findByIdAndUpdate的第三个参数是options，其中new为true表示返回新的记录，否则返回的是老记录；runValidators为true表示修改的时候需要进行验证。这两个默认都为false。</p>
+<p> 到这里就完成了blog的CRUD操作，后面可能先作一些修改，比如增加last_edit_time属性等。还有就是comment的CRUD，然后就是用户及权限的处理。</p>
+<p> 此为一。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2015/12/29/docker基础/">
+        docker基础 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
