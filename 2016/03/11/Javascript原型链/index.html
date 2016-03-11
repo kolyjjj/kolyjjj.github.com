@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Javascript原型链 | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <!-- <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/github.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <div class="author">
+            <a href="/about">
+              <img src="/img/koly.png" alt="author"/>
+            </a>
+            <p>
+              koly
+            </p>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+            
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(14)</small></a></li>
+            
+				    
+              </ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                            <li class="nolink"><span>52.0k words</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-03-11T14:15:09.000Z" itemprop="datePublished">
+          2016-03-11
+      </time>
+      |
+      <a class="no-links">4,125 words</a>
+    
+    
+    | 
+    <a href='/tags/Javascript/'>Javascript</a>
+    
+    
+</span>
+
+                <h1>Javascript原型链</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>Javascript是一门通过原型链来实现继承的面向对象的动态语言。其原型链机制本身并不复杂，但是理解起来有些绕。本文试图理清原型链的相关知识，并尝试归并以便于理解记忆。<a id="more"></a><br>本文的所有代码均是在chrome的console中执行。</p>
+<h2 id="从一个简单的例子开始"><a href="#从一个简单的例子开始" class="headerlink" title="从一个简单的例子开始"></a>从一个简单的例子开始</h2><p>首先我们使用object literal来创建一个对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> koly = &#123;name:<span class="string">'koly'</span>&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>那么，什么叫object literal呢？先来看看literal的定义：</p>
+<blockquote>
+<p>literal: taking words in their usual or most basic sense without metaphor or exaggeration: dreadful in its literal sense, full of dread. </p>
+</blockquote>
+<p>literal就是指最简单最基本的语言表达，没有花哨，没有隐喻，没有夸张。所以object literal就是说最简单的没有花哨的创建object的形式。除了object literal外还有什么string literal，array literal等，这里就不描述了。<br>回到我们刚刚创建的对象<code>koly</code>，我们来执行几条代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">koly.prototype</span><br><span class="line"><span class="comment">//undefined</span></span><br><span class="line">koly.__proto__</span><br><span class="line"><span class="comment">//Object &#123;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面注释的部分表示chrome console里面的输出。<code>koly.prototype</code>的结果是<code>undefined</code>，那么<code>undefined</code>是什么意思呢？看看MDN上的定义，既然提到了<code>undefined</code>，那就顺便对比以下<code>null</code>好了：</p>
+<blockquote>
+<p>undefined: The global undefined property represents the primitive value undefined. It is one of JavaScript’s primitive types.<br>null: The value null is a JavaScript literal representing null or an “empty” value, i.e. no object value is present. It is one of JavaScript’s primitive values.<br>— from <a href="(https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/undefined">MDN</a></p>
+</blockquote>
+<p>相同之处，两个都是primitive values。不同之处undefined是global property，而null是Javascript literal。关于两者的区别，对于没有声明的对象，其值为undefined;一个对象的值为null则表示该值已被声明，且被赋值为null，koly.one是undefined，而执行<code>koly.one=null</code>，才能将koly.one赋值为null。所以null表示的其实是一个值，是一个基本的literal。跟‘one’这个string literal是一样的。<br>说完了undefined和null，我们回到<code>prototype</code>和<code>__proto__</code>，前者输出了undefined，表示koly这个对象上并没有prototype这个属性。后者输出了一个非undefined，表示koly上面是有这个东西的。但是我们在定义koly这个对象的时候，并没有添加<code>__proto__</code>这个属性啊，它是什么呢？</p>
+<blockquote>
+<p>The <code>__proto__</code> property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed.<br>— from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="external">MDN</a></p>
+</blockquote>
+<p>上面的大意就是说通过<code>__proto__</code>可以访问对象内部的<code>[[Prototype]]</code>，这下好了，<code>[[Prototype]]</code>又是什么呢？</p>
+<blockquote>
+<p>Following the ECMAScript standard, the notation someObject.[[Prototype]] is used to designate the prototype of someObject. This is equivalent to the JavaScript property <strong>proto</strong> (now deprecated). Since ECMAScript 6, the [[Prototype]] is accessed using the accessors Object.getPrototypeOf() and Object.setPrototypeOf().<br>— from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN</a></p>
+</blockquote>
+<p>上面的意思就是<code>[[Prototype]]</code>是ECMAScript定义的东西，它跟之前的<code>__proto__</code>是一样的。<code>__proto__</code>被deprecated了，现在提倡用<code>[[Prototype]]</code>。那么，<code>[[Prototype]]</code>就代表了对象的prototype。<br>综合以上的信息，总结来说就是，<strong>通过访问一个对象的<code>__proto__</code>可以访问这个对象的prototype。</strong>那么，<code>koly.__proto__</code>就是koly这个对象的原型。<br>那么，对象的原型(prototype)是什么？</p>
+<blockquote>
+<p>Each object has an internal link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. null, by definition, has no prototype, and acts as the final link in this prototype chain.<br>— from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN</a></p>
+</blockquote>
+<p>说，每一个对象内部都有一个指向另一个对象的链接，这个链接就叫这个对象的prototype。这个链接也是一个对象，也有自己的prototype，这个prototype指向另一个对象，这个对象也有自己的prototype，指向另一个对象。对象及对象间的指向就叫做原型链，这个链的终点是null，null没有prototype。<br>以刚刚的koly为例子：</p>
+<ul>
+<li>koly这个对象的内部有一个prototype，我们可以使用<code>__proto__</code>来访问</li>
+<li>koly.prototype指向另一个对象，这个对象也有自己的prototype，可以使用<code>__proto__</code>来访问</li>
+</ul>
+<p>那么koly.prototype指向的对象是谁呢？</p>
+<blockquote>
+<p>All objects in JavaScript are descended from Object; all objects inherit methods and properties from Object.prototype, although they may be overridden (except an Object with a null prototype, i.e. Object.create(null)).<br>— from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype" target="_blank" rel="external">MDN</a> </p>
+</blockquote>
+<p>上面说所有的对象都由Object派生而来，所有对象都从Object.prototype继承方法。koly是一个对象，该对象是从Object派生而来，继承了Object.prototype的方法。我们来看看<code>koly.__proto__</code>跟<code>Object.prototype</code>是什么关系。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">koly.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的结果true代表了什么呢？<br>我们得先搞清楚<code>===</code>意味着什么。Javascript里面对于Object，Array等类型是有引用存在的，比如<code>var koly = {name:&#39;koly&#39;}</code>中，koly就是一个引用，这个引用指向了<code>{name:&#39;koly&#39;}</code>，这个引用也有自己的值（可能是一个地址之类的）。当我们在evaluate koly这个引用的时候，得到的结果是<code>{name:&#39;koly&#39;}</code>这个对象，而不是koly本身的值。<code>===</code>比较的是引用本身的值，而不是引用指向的那个对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> one = &#123;name:<span class="string">'one'</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> anotherOne = &#123;name:<span class="string">'one'</span>&#125;;</span><br><span class="line">one === anotherOne;</span><br><span class="line"><span class="comment">// false</span></span><br><span class="line">anotherOne = one; <span class="comment">// 这里将one本身的值赋给了anotherOne，可以想象为将one的地址赋给了anotherOne</span></span><br><span class="line">one === anotherOne;</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>所以<code>===</code>应用于两个对象，其返回为true的情况表示两个对象的引用其值一样。考虑到上面的<code>koly.__proto__ === Object.prototype</code>，那么我们可以想象一定有一步<code>koly.__proto__ = Object.prototype</code>。<br>那么<code>Object.prototype</code>是什么呢？Javascript里面全都是对象，那么它是Object的<code>__proto__</code>吗？<br>先回答第二个问题：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype === <span class="built_in">Object</span>.__proto__;</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>第一个问题，我们首先看看Object是什么？</p>
+<blockquote>
+<p>The Object constructor creates an object wrapper.<br>— from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" rel="external">MDN</a></p>
+</blockquote>
+<p>Object是一个”constructor”，那么”constructor”又是什么？举个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is a generic default constructor class Default</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Default</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>constructor就是一个函数。那么Object也是一个函数，通过这个函数可以创建对象，比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Called as a constructor</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Object</span>([value])</span><br></pre></td></tr></table></figure></p>
+<p>当对一个函数使用<code>new</code>关键字的时候，我们就称这个函数为<code>constructor</code>，<code>new</code>出来的东西称为对象。<br>Javascript里面几乎所有东西都是对象，所以constructor也是对象，这个对象自然也可以有自己的属性，那么<code>prototype</code>就是Object这个constructor的一个属性。同时Object还有另外一个属性<code>[[Prototype]]</code>，这个属性可以通过<code>__proto__</code>在chrome里面访问到。</p>
+<p>到这里，都有点晕了。我们试着来理一下：</p>
+<ul>
+<li>Javascript里面几乎所有东西都是对象</li>
+<li>每一个对象都有一个<code>[[Prototype]]</code>，在chrome里面可以使用<code>__proto__</code>来访问</li>
+<li>constructor或者说函数都是对象，有<code>[[Prototype]]</code>，同时也有另外一个属性<code>prototype</code></li>
+<li><code>koly.__proto__</code>指向了<code>Object.prototype</code></li>
+<li><code>Object</code>是一个constructor，同时也是一个对象，就是说<code>Object</code>本身也有<code>__proto__</code></li>
+<li>constructor是一个函数，只是在使用的时候不是直接调用，而是使用<code>new</code>，其结果是创建一个对象</li>
+<li>null没有<code>[[Prototype]]</code></li>
+</ul>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>有了对上面这些概念的理解，我们再来看看由<code>koly</code>引出的原型链：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">koly.__proto__ === <span class="built_in">Object</span>.prototype;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>上面就是<code>koly</code>的原型链，比较简单。我们再来看看<code>Object</code>的原型链：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.__proto__ === Function.prototype;&#10;// true&#10;Function.prototype.__proto__ === Object.prototype;&#10;// true&#10;Object.prototype.__proto__ === null&#10;//true</span><br></pre></td></tr></table></figure></p>
+<p>上面的<code>Object</code>和<code>Function</code>都是constructor，就是函数。<strong>原型链的链条是由<code>__proto__</code>来实现的</strong>。在跟原型链的时候只需聚焦<code>__proto__</code>就行了，constructor的<code>prototype</code>只是一个会出现在原型链条里面的特殊对象。<br>constructor的prototype会在使用constructor创建对象的时候赋给该对象的<code>__proto__</code>。由于koly是通过<code>Object</code>这个constructor创建的，所以<code>koly.__proto__</code>也就指向了<code>Object.prototype</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> aAnimal = <span class="keyword">new</span> Animal();</span><br><span class="line">aAnimal.__proto__ === Animal.prototype;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">Animal.prototype.__proto__ === <span class="built_in">Object</span>.prototype;</span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="原型链有什么用？"><a href="#原型链有什么用？" class="headerlink" title="原型链有什么用？"></a>原型链有什么用？</h2><p>先来看一段文字：</p>
+<blockquote>
+<p> When trying to access a property of an object, the property will not only be sought on the object but on the prototype of the object, the prototype of the prototype, and so on until either a property with a matching name is found or the end of the prototype chain is reached.<br>— from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN</a></p>
+</blockquote>
+<p>就是说在访问一个对象的属性的时候，会首先在对象上找，找不到就去对象的<code>[[Prototype]]</code>上找，找不着就去<code>[[Prototype]]</code>的<code>[[Prototype]]</code>上找，如果最后找到<code>Object.prototype</code>还没找到，就是undefined了，因为<code>Object.prototype.__proto__ === null</code>了。举个例子koly.toString()怎么找的呢？先在koly本身找，没有，就去<code>koly.__proto__</code>(<code>koly.__proto__ === Object.prototype</code>)上找，这时候就发现找到了，就返回了。</p>
+<h2 id="原型链与继承"><a href="#原型链与继承" class="headerlink" title="原型链与继承"></a>原型链与继承</h2><p>先看一段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.species = <span class="string">'Animal'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.type = <span class="string">'Dog'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// Dog应该要继承Animal</span></span><br><span class="line">Dog.prototype = <span class="keyword">new</span> Animal();</span><br><span class="line">Dog.prototype.constructor = Dog;</span><br><span class="line"><span class="keyword">var</span> aDog = <span class="keyword">new</span> Dog();</span><br><span class="line"><span class="built_in">console</span>.log(aDog.species);</span><br><span class="line"><span class="comment">// Animal</span></span><br></pre></td></tr></table></figure></p>
+<p>说到继承，就得知道父与子。子继承了父的或者属性或者方法。换句话说，子可以使用父的方法。放在<code>[[Prototype]]</code>及原型链的情况下，就是说子没有的方法，可以在原型链上找到，即子的<code>[[Prototype]]</code>指向了父的某个对象的prototype，至于为什么不是直接指向父的prototype，参见阮一峰的<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="external">博客</a>。<br>上面的代码有一句<code>Dog.prototype.constructor=Dog;</code>，这个不设置constructor也没有太大问题，只要你不用，StackOverflow上有讨论：<a href="http://stackoverflow.com/questions/4012998/what-it-the-significance-of-the-javascript-constructor-property" target="_blank" rel="external">这里</a>。<br>顺便说说这个constructor对象是什么，这个东西保存了对象的构造函数，比如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> koly = &#123;name:<span class="string">'koly'</span>&#125;;</span><br><span class="line">koly.constructor === <span class="built_in">Object</span>;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Animal();</span><br><span class="line">a.constructor === Animal;</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="更多原型链"><a href="#更多原型链" class="headerlink" title="更多原型链"></a>更多原型链</h2><p>来看一个图：<br><img src="/images/javascript_prototype_chain.png" alt="javascript_prototype_chain"></p>
+<p>箭头起点的对象的<code>__proto__</code>就是箭头终点的对象。</p>
+<p>我觉得，理解原型链，一定要弄清楚的是函数对象和其他对象的区别，前者除了有<code>__proto__</code>之外，还有<code>prototype</code>，而这两个是不一样的东西。还有就是，函数对象的<code>prototype</code>会在创建对象的时候被赋给该对象的<code>__proto__</code>。<br>好了，就先到这里。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/01/26/Javascript后端开发学习/">
+        Javascript后端开发学习 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+      
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74042991-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>
