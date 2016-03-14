@@ -3605,3 +3605,6 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
+code {
+  color: #256bc7;
+}
