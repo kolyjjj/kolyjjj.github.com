@@ -122,6 +122,8 @@
             	<ul class="sb-submenu">
 				  	
             
+				    
+            
 				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(15)</small></a></li>
             
 				    
@@ -230,14 +232,14 @@
 <li>执行一个命令(RUN)</li>
 <li>添加一个文件或者目录</li>
 <li>创建一个环境变量</li>
-<li>指定container运行时执行的指令<br>最终，多个layer会通过unio file system被合并成为一个image。</li>
+<li>指定container运行时执行的指令<br>最终，多个layer会通过union file system被合并成为一个image。</li>
 </ul>
 </li>
 <li>container，这个是虚拟机的容器。就是说根据上面所说的image创建的虚拟机就跑在这里面。</li>
 <li>docker hub，官方的下载各种image的地方。地址在这里：<a href="https://hub.docker.com/" target="_blank" rel="external">hub.docker.com</a></li>
 <li>volume, 是一个mount point，就是可以给container指定一个volume，然后这个volume会跟host里面的某个地方(文件或者文件夹)映射起来。可以显示指定host里面对应的文件夹或文件，如果没有显示指定，那么docker会自动指定一个。</li>
 <li>bridge，桥接。简单来说就是在host上建立一个网络，比如是叫isolated_net，然后可以指定container加入这个网络。这样就可以实现多个container的通信。默认情况下使用的网络是docker0。</li>
-<li>docker-machine。一个工具。ocker-machine可以在不同的地方创建docker host，比如在一台电脑上，在公有云或者私有云上。它会创建一个docker host，然后在上面安装docker，最后对docker client进行配置，使其可以访问docker host。同时，docker-machine还提供了一系列的命令来管理docker host。</li>
+<li>docker-machine。一个工具。docker-machine可以在不同的地方创建docker host，比如在一台电脑上，在公有云或者私有云上。它会创建一个docker host，然后在上面安装docker，最后对docker client进行配置，使其可以访问docker host。同时，docker-machine还提供了一系列的命令来管理docker host。</li>
 <li>docker registry。放docker image的地方。比如docker hub就是一个官方的public registry。当然可以搭建自己的private registry。</li>
 </ul>
 <h2 id="docker-engine-docker-machine-docker-host和docker-client"><a href="#docker-engine-docker-machine-docker-host和docker-client" class="headerlink" title="docker engine, docker machine, docker host和docker client"></a>docker engine, docker machine, docker host和docker client</h2><p>先来看看docker engine，<a href="https://www.docker.com/docker-engine" target="_blank" rel="external">官网</a>是这样介绍的：<br><blockquote><p>At the core of the Docker platform is Docker Engine, a lightweight runtime and robust tooling that builds and runs your Docker containers. Docker Engine runs on Linux to create the operating environment for your distributed applications. The in-host daemon communicates with the Docker client to execute commands to build, ship and run containers</p>
@@ -274,7 +276,7 @@
 <p>docker-engine就可以了。</p>
 <p>总结一下，docker-engine是docker需要的执行环境以及一些工具，是基础。docker-machine是用来创建和管理docker vm或者说是docker环境的。Docker host指的就是运行docker的机器，linux上就是运行linux的物理机，windows和mac上是一个虚拟机。Docker daemon是docker host里面运行的一个docker相关的程序，这个程序会完成诸如contaienr管理之类的工作。Docker<br>client是在docker虚拟机外的一个客户端，可以独立运行在linux，mac，和windows上。用户通过docker client跟docker daemon通信，以此完成各种操作，比如image的创建，container的生成等。</p>
 <p>docker官方还有一张图：</p>
-<p><img src="/images/understanding_dockers.svg" alt="understand docker"></p>
+<p><img src="/images/understanding_docker.svg" alt="understand docker"></p>
 <h2 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h2><table>
 <thead>
 <tr>
