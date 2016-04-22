@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>RPC and Apache Thrift | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <!-- <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/github.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <div class="author">
+            <a href="/about">
+              <img src="/img/koly.png" alt="author"/>
+            </a>
+            <p>
+              koly
+            </p>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+            
+				    
+            
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(16)</small></a></li>
+            
+				    
+              </ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                            <li class="nolink"><span>76.9k words</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-04-22T13:47:13.000Z" itemprop="datePublished">
+          2016-04-22
+      </time>
+      |
+      <a class="no-links">9,931 words</a>
+    
+    
+    | 
+    <a href='/tags/RPC/'>RPC</a>
+    
+    
+</span>
+
+                <h1>RPC and Apache Thrift</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>最近在做MicroServices的阅读的时候，注意到services之间的通信可以使用RPC的方式。于是就作了一下初级的探索。<a id="more"></a></p>
+<h2 id="RPC-是什么？"><a href="#RPC-是什么？" class="headerlink" title="RPC 是什么？"></a>RPC 是什么？</h2><p>Remote Procedure Call:</p>
+<blockquote>
+<p>In distributed computing, a remote procedure call (RPC) is when a computer program causes a procedure (subroutine) to execute in another address space (commonly on another computer on a shared network), which is coded as if it were a normal (local) procedure call, without the programmer explicitly coding the details for the remote interaction.<br>@Wiki</p>
+</blockquote>
+<p>比如说，你的程序调用了一个函数，一般来说这个函数是在你这个程序本身定义和实现的。可是现在，这个函数的定义和实现却在另一个进程或者另一台电脑上，表面上你是直接对函数进行了调用，实际上调用时通过了进程间通信或者网络通信的。这种就叫做RPC。</p>
+<p>RPC属于一种request/response协议，就是客户端发起一个请求，服务器端返回一个响应。其本身可以定义一些通信格式等，比如说JSON, XML, 或者binary等。</p>
+<p>再来一个stackoverflow上的回答：</p>
+<blockquote>
+<p>An RPC framework in general is a set of tools that enable the programmer to call a piece of code in a remote process, be it on a different machine or just another process on the same machine.<br>@<a href="http://stackoverflow.com/questions/20653240/what-is-rpc-framework-and-apache-thrift" target="_blank" rel="external">stackoverflow</a></p>
+</blockquote>
+<h2 id="Thrift"><a href="#Thrift" class="headerlink" title="Thrift"></a>Thrift</h2><p>先来看看官方定义：</p>
+<blockquote>
+<p>Thrift is a software library and set of code-generation tools devel- oped at Facebook to expedite development and implementation of efficient and scalable backend services.<br>– 《Thrift: Scalable Cross-Language Services Implementation》</p>
+</blockquote>
+<p>Thrift是一个软件库(software library)以及一个代码生成工具的集合。由facebook提出，用来加速开发效率和可扩展的后端服务(service)。<br>它解决的是什么问题呢？<br>在facebook，有很多个后端的service，然后每个service可能使用的开发语言并不一样。Service之间需要进行通信，于是就需要定义一套通信的传输标准，走网络的话，传输协议基本就是TCP或者HTTP了，而数据包里面的数据格式，则需要另一套标准。Thrift就提供了这一套标准，其传输的数据格式也可以进行选择，可以是JSON或者Binary。定义好标准之后，然后每个语言都需要实现一些代码来进行传输，这一部分，从功能上讲是重复的，而且可以单独提取出来。于是Thrift就提供了一个工具，可以针对不同的语言生成用于传输数据的代码。比如，你用java，那么用Thrift就可以生成java语言编写的发起Request和接收Response的代码，生成之后，业务代码就可以直接调用了。</p>
+<p>Thrift可以实现RPC，怎么个实现法呢？Remote Procedure Call，这里的Procedure就是指一段代码，在编程里面，一段代码抽象一下，就是一个函数。Remote Procedure Call在某种程度上，可以称为Remote Method Call。既然是函数，自然有函数三件套：函数名，返回值，参数。实现RPC，自然要实现对函数的定义。而Thrift通过定义一个.thrift文件格式，实现了这种约束。通过后面的例子，可以略见一斑。</p>
+<h2 id="Apache-Thrift"><a href="#Apache-Thrift" class="headerlink" title="Apache Thrift"></a>Apache Thrift</h2><h4 id="同样先来看看官方定义："><a href="#同样先来看看官方定义：" class="headerlink" title="同样先来看看官方定义："></a>同样先来看看官方定义：</h4><blockquote>
+<p>The Apache Thrift software framework, for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.<br>– <a href="https://thrift.apache.org/" target="_blank" rel="external">Apache Thrift</a></p>
+</blockquote>
+<p>其实跟上面的Thrift差不多，也是一个库(software stack)和一个代码生成工具。为什么呢？因为这个东西本来是facebook先搞出来的，后面贡献给了Apache，所以两个其实差不多咯。</p>
+<h5 id="那么怎么使用呢？"><a href="#那么怎么使用呢？" class="headerlink" title="那么怎么使用呢？"></a>那么怎么使用呢？</h5><p>大概步骤有三步：</p>
+<ul>
+<li>写一个.thrift文件，定义方法</li>
+<li>使用thrift工具产生代码</li>
+<li>引入thrift library</li>
+<li>编写客户端和服务器端代码</li>
+</ul>
+<p>接下来用一个例子来解释：<br>首先定义一个.thrift文件service.thrift:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * Licensed to the Apache Software Foundation (ASF) under one</span><br><span class="line"> * or more contributor license agreements. See the NOTICE file</span><br><span class="line"> * distributed with this work for additional information</span><br><span class="line"> * regarding copyright ownership. The ASF licenses this file</span><br><span class="line"> * to you under the Apache License, Version 2.0 (the</span><br><span class="line"> * "License"); you may not use this file except in compliance</span><br><span class="line"> * with the License. You may obtain a copy of the License at</span><br><span class="line"> *</span><br><span class="line"> *   http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"> *</span><br><span class="line"> * Unless required by applicable law or agreed to in writing,</span><br><span class="line"> * software distributed under the License is distributed on an</span><br><span class="line"> * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span><br><span class="line"> * KIND, either express or implied. See the License for the</span><br><span class="line"> * specific language governing permissions and limitations</span><br><span class="line"> * under the License.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line"># Thrift Tutorial</span><br><span class="line"># Mark Slee (mcslee@facebook.com)</span><br><span class="line">#</span><br><span class="line"># This file aims to teach you how to use Thrift, in a .thrift file. Neato. The</span><br><span class="line"># first thing to notice is that .thrift files support standard shell comments.</span><br><span class="line"># This lets you make your thrift file executable and include your Thrift build</span><br><span class="line"># step on the top line. And you can place comments like this anywhere you like.</span><br><span class="line">#</span><br><span class="line"># Before running this file, you will need to have installed the thrift compiler</span><br><span class="line"># into /usr/local/bin.</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * The first thing to know about are types. The available types in Thrift are:</span><br><span class="line"> *</span><br><span class="line"> *  bool        Boolean, one byte</span><br><span class="line"> *  i8 (byte)   Signed 8-bit integer</span><br><span class="line"> *  i16         Signed 16-bit integer</span><br><span class="line"> *  i32         Signed 32-bit integer</span><br><span class="line"> *  i64         Signed 64-bit integer</span><br><span class="line"> *  double      64-bit floating point value</span><br><span class="line"> *  string      String</span><br><span class="line"> *  binary      Blob (byte array)</span><br><span class="line"> *  map&lt;t1,t2&gt;  Map from one type to another</span><br><span class="line"> *  list&lt;t1&gt;    Ordered list of one type</span><br><span class="line"> *  set&lt;t1&gt;     Set of unique elements of one type</span><br><span class="line"> *</span><br><span class="line"> * Did you also notice that Thrift supports C style comments?</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">// Just in case you were wondering... yes. We support simple C comments too.</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Thrift files can reference other Thrift files to include common struct</span><br><span class="line"> * and service definitions. These are found using the current path, or by</span><br><span class="line"> * searching relative to any paths specified with the -I compiler flag.</span><br><span class="line"> *</span><br><span class="line"> * Included objects are accessed using the name of the .thrift file as a</span><br><span class="line"> * prefix. i.e. shared.SharedObject</span><br><span class="line"> */</span><br><span class="line">include "shared.thrift"</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Thrift files can namespace, package, or prefix their output in various</span><br><span class="line"> * target languages.</span><br><span class="line"> */</span><br><span class="line">namespace cpp tutorial</span><br><span class="line">namespace d tutorial</span><br><span class="line">namespace dart tutorial</span><br><span class="line">namespace java tutorial</span><br><span class="line">namespace php tutorial</span><br><span class="line">namespace perl tutorial</span><br><span class="line">namespace haxe tutorial</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Thrift lets you do typedefs to get pretty names for your types. Standard</span><br><span class="line"> * C style here.</span><br><span class="line"> */</span><br><span class="line">typedef i32 MyInteger</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Thrift also lets you define constants for use across languages. Complex</span><br><span class="line"> * types and structs are specified using JSON notation.</span><br><span class="line"> */</span><br><span class="line">const i32 INT32CONSTANT = 9853</span><br><span class="line">const map&lt;string,string&gt; MAPCONSTANT = &#123;'hello':'world', 'goodnight':'moon'&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * You can define enums, which are just 32 bit integers. Values are optional</span><br><span class="line"> * and start at 1 if not supplied, C style again.</span><br><span class="line"> */</span><br><span class="line">enum Operation &#123;</span><br><span class="line">  ADD = 1,</span><br><span class="line">  SUBTRACT = 2,</span><br><span class="line">  MULTIPLY = 3,</span><br><span class="line">  DIVIDE = 4</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Structs are the basic complex data structures. They are comprised of fields</span><br><span class="line"> * which each have an integer identifier, a type, a symbolic name, and an</span><br><span class="line"> * optional default value.</span><br><span class="line"> *</span><br><span class="line"> * Fields can be declared "optional", which ensures they will not be included</span><br><span class="line"> * in the serialized output if they aren't set.  Note that this requires some</span><br><span class="line"> * manual management in some languages.</span><br><span class="line"> */</span><br><span class="line">struct Work &#123;</span><br><span class="line">  1: i32 num1 = 0,</span><br><span class="line">  2: i32 num2,</span><br><span class="line">  3: Operation op,</span><br><span class="line">  4: optional string comment,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Structs can also be exceptions, if they are nasty.</span><br><span class="line"> */</span><br><span class="line">exception InvalidOperation &#123;</span><br><span class="line">  1: i32 whatOp,</span><br><span class="line">  2: string why</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Ahh, now onto the cool part, defining a service. Services just need a name</span><br><span class="line"> * and can optionally inherit from another service using the extends keyword.</span><br><span class="line"> */</span><br><span class="line">service Calculator extends shared.SharedService &#123;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * A method definition looks like C code. It has a return type, arguments,</span><br><span class="line">   * and optionally a list of exceptions that it may throw. Note that argument</span><br><span class="line">   * lists and exception lists are specified using the exact same syntax as</span><br><span class="line">   * field lists in struct or exception definitions.</span><br><span class="line">   */</span><br><span class="line"></span><br><span class="line">   void ping(),</span><br><span class="line"></span><br><span class="line">   i32 add(1:i32 num1, 2:i32 num2),</span><br><span class="line"></span><br><span class="line">   i32 calculate(1:i32 logid, 2:Work w) throws (1:InvalidOperation ouch),</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">    * This method has a oneway modifier. That means the client only makes</span><br><span class="line">    * a request and does not listen for any response at all. Oneway methods</span><br><span class="line">    * must be void.</span><br><span class="line">    */</span><br><span class="line">   oneway void zip()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * That just about covers the basics. Take a look in the test/ folder for more</span><br><span class="line"> * detailed examples. After you run this file, your generated code shows up</span><br><span class="line"> * in folders with names gen-&lt;language&gt;. The generated code isn't too scary</span><br><span class="line"> * to look at. It even has pretty indentation.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<p>然后定义另一个share.thrift:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * Licensed to the Apache Software Foundation (ASF) under one</span><br><span class="line"> * or more contributor license agreements. See the NOTICE file</span><br><span class="line"> * distributed with this work for additional information</span><br><span class="line"> * regarding copyright ownership. The ASF licenses this file</span><br><span class="line"> * to you under the Apache License, Version 2.0 (the</span><br><span class="line"> * "License"); you may not use this file except in compliance</span><br><span class="line"> * with the License. You may obtain a copy of the License at</span><br><span class="line"> *</span><br><span class="line"> *   http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"> *</span><br><span class="line"> * Unless required by applicable law or agreed to in writing,</span><br><span class="line"> * software distributed under the License is distributed on an</span><br><span class="line"> * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span><br><span class="line"> * KIND, either express or implied. See the License for the</span><br><span class="line"> * specific language governing permissions and limitations</span><br><span class="line"> * under the License.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * This Thrift file can be included by other Thrift files that want to share</span><br><span class="line"> * these definitions.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">namespace cpp shared</span><br><span class="line">namespace d share // "shared" would collide with the eponymous D keyword.</span><br><span class="line">namespace dart shared</span><br><span class="line">namespace java shared</span><br><span class="line">namespace perl shared</span><br><span class="line">namespace php shared</span><br><span class="line">namespace haxe shared</span><br><span class="line"></span><br><span class="line">struct SharedStruct &#123;</span><br><span class="line">  1: i32 key</span><br><span class="line">  2: string value</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service SharedService &#123;</span><br><span class="line">  SharedStruct getStruct(1: i32 key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后使用命令生成java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thrift -r --gen java service.thrift</span><br></pre></td></tr></table></figure></p>
+<p>这会生成两个文件件：shared和tutorial。之后建立一个gradle工程，将shared和tutorial拷贝到<code>src/main/java</code>下面。<br>添加依赖，即在build.gradle里面的<code>dependencies</code>部分加上thrift的依赖：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile(<span class="string">'org.apache.thrift:libthrift:0.9.3'</span>)</span><br><span class="line">    testCompile <span class="string">group:</span> <span class="string">'junit'</span>, <span class="string">name:</span> <span class="string">'junit'</span>, <span class="string">version:</span> <span class="string">'4.11'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后添加一个package，这里是<code>li.koly</code>。然后添加client和server：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> li.koly;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.TException;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.protocol.TBinaryProtocol;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.protocol.TProtocol;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.transport.TSocket;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.transport.TTransport;</span><br><span class="line"><span class="keyword">import</span> shared.SharedStruct;</span><br><span class="line"><span class="keyword">import</span> tutorial.Calculator;</span><br><span class="line"><span class="keyword">import</span> tutorial.InvalidOperation;</span><br><span class="line"><span class="keyword">import</span> tutorial.Operation;</span><br><span class="line"><span class="keyword">import</span> tutorial.Work;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TTransport transport;</span><br><span class="line">            transport = <span class="keyword">new</span> TSocket(<span class="string">"localhost"</span>, <span class="number">9090</span>);</span><br><span class="line">            transport.open();</span><br><span class="line">            <span class="comment">// 数据以二进制的形式传输</span></span><br><span class="line">            TProtocol protocol = <span class="keyword">new</span> TBinaryProtocol(transport);</span><br><span class="line">            Calculator.Client client = <span class="keyword">new</span> Calculator.Client(protocol);</span><br><span class="line"></span><br><span class="line">            perform(client);</span><br><span class="line"></span><br><span class="line">            transport.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (TException x) &#123;</span><br><span class="line">            x.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">perform</span><span class="params">(Calculator.Client client)</span> <span class="keyword">throws</span> TException </span>&#123;</span><br><span class="line">        client.ping();</span><br><span class="line">        System.out.println(<span class="string">"ping()"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Calculator.Client 实现了Calculator.Iface，所以可以调用add方法</span></span><br><span class="line">        <span class="keyword">int</span> sum = client.add(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"1+1="</span> + sum);</span><br><span class="line"></span><br><span class="line">        Work work = <span class="keyword">new</span> Work();</span><br><span class="line"></span><br><span class="line">        work.op = Operation.DIVIDE;</span><br><span class="line">        work.num1 = <span class="number">1</span>;</span><br><span class="line">        work.num2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> quotient = client.calculate(<span class="number">1</span>, work);</span><br><span class="line">            System.out.println(<span class="string">"Whoa we can divide by 0"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvalidOperation io) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Invalid operation: "</span> + io.why);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        work.op = Operation.SUBTRACT;</span><br><span class="line">        work.num1 = <span class="number">15</span>;</span><br><span class="line">        work.num2 = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> diff = client.calculate(<span class="number">1</span>, work);</span><br><span class="line">            System.out.println(<span class="string">"15-10="</span> + diff);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvalidOperation io) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Invalid operation: "</span> + io.why);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        SharedStruct log = client.getStruct(<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"Check log: "</span> + log.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个是client，其中有注释。<br>下面是server。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> li.koly;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.server.TServer;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.server.TServer.Args;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.server.TSimpleServer;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.server.TThreadPoolServer;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.transport.TSSLTransportFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.transport.TServerSocket;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.transport.TServerTransport;</span><br><span class="line"><span class="keyword">import</span> org.apache.thrift.transport.TSSLTransportFactory.TSSLTransportParameters;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generated code</span></span><br><span class="line"><span class="keyword">import</span> tutorial.*;</span><br><span class="line"><span class="keyword">import</span> shared.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> CalculatorHandler handler;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Calculator.Processor processor;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            handler = <span class="keyword">new</span> CalculatorHandler();</span><br><span class="line">            processor = <span class="keyword">new</span> Calculator.Processor(handler);</span><br><span class="line"></span><br><span class="line">            Runnable simple = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    simple(processor);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">new</span> Thread(simple).start();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception x) &#123;</span><br><span class="line">            x.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">simple</span><span class="params">(Calculator.Processor processor)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TServerTransport serverTransport = <span class="keyword">new</span> TServerSocket(<span class="number">9090</span>);</span><br><span class="line">            TServer server = <span class="keyword">new</span> TSimpleServer(<span class="keyword">new</span> Args(serverTransport).processor(processor));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Use this for a multithreaded server</span></span><br><span class="line">            <span class="comment">// TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));</span></span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"Starting the simple server..."</span>);</span><br><span class="line">            server.serve();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后是具体的Calculator实现，也就是具体的业务实现了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> li.koly;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tutorial.*;</span><br><span class="line"><span class="keyword">import</span> shared.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Calculator.Iface定义了在service.thrift文件中定义的那些方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorHandler</span> <span class="keyword">implements</span> <span class="title">Calculator</span>.<span class="title">Iface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;Integer,SharedStruct&gt; log;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CalculatorHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log = <span class="keyword">new</span> HashMap&lt;Integer, SharedStruct&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ping</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"ping()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> n1, <span class="keyword">int</span> n2)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"add("</span> + n1 + <span class="string">","</span> + n2 + <span class="string">")"</span>);</span><br><span class="line">        <span class="keyword">return</span> n1 + n2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> logid, Work work)</span> <span class="keyword">throws</span> InvalidOperation </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"calculate("</span> + logid + <span class="string">", &#123;"</span> + work.op + <span class="string">","</span> + work.num1 + <span class="string">","</span> + work.num2 + <span class="string">"&#125;)"</span>);</span><br><span class="line">        <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">switch</span> (work.op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD:</span><br><span class="line">                val = work.num1 + work.num2;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT:</span><br><span class="line">                val = work.num1 - work.num2;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY:</span><br><span class="line">                val = work.num1 * work.num2;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE:</span><br><span class="line">                <span class="keyword">if</span> (work.num2 == <span class="number">0</span>) &#123;</span><br><span class="line">                    InvalidOperation io = <span class="keyword">new</span> InvalidOperation();</span><br><span class="line">                    io.whatOp = work.op.getValue();</span><br><span class="line">                    io.why = <span class="string">"Cannot divide by 0"</span>;</span><br><span class="line">                    <span class="keyword">throw</span> io;</span><br><span class="line">                &#125;</span><br><span class="line">                val = work.num1 / work.num2;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                InvalidOperation io = <span class="keyword">new</span> InvalidOperation();</span><br><span class="line">                io.whatOp = work.op.getValue();</span><br><span class="line">                io.why = <span class="string">"Unknown operation"</span>;</span><br><span class="line">                <span class="keyword">throw</span> io;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        SharedStruct entry = <span class="keyword">new</span> SharedStruct();</span><br><span class="line">        entry.key = logid;</span><br><span class="line">        entry.value = Integer.toString(val);</span><br><span class="line">        log.put(logid, entry);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SharedStruct <span class="title">getStruct</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"getStruct("</span> + key + <span class="string">")"</span>);</span><br><span class="line">        <span class="keyword">return</span> log.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"zip()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先启动server，然后启动client，就可以看到输出了。需要注意的是在client的perform函数里面，直接调用<code>add</code>函数，就跟调用本地函数的感觉一样，但是实际上是调用的另一个process的函数，这就是所谓的RPC了。</p>
+<h4 id="版本演进怎么处理？"><a href="#版本演进怎么处理？" class="headerlink" title="版本演进怎么处理？"></a>版本演进怎么处理？</h4><p>为什么需要版本演进呢？比如说有一天你希望增加或者修改一个service，但是同时又需要支持旧的service，这个时候怎么处理呢？<br>根据<a href="https://thrift.apache.org/static/files/thrift-20070401.pdf" target="_blank" rel="external">Thrift: Scalable Cross-Language Services Implementation</a>，有四种情况：</p>
+<ul>
+<li>Added field，old client，new<br>server。增加了东西（或者增加新的方法，或者增加了新的方法参数）。server是新的，客户端是老的。这时候客户端call的还是老的未增加的方法。此时，新的server应当能够对老方法进行支持。比如增加了方法，旧方法没有改动，可以直接调用旧方法。增加了方法参数，这时候就看server的逻辑，如果新增的参数是optional的，那么可以返回结果。如果不是，则可以返回错误信息。</li>
+<li>Added field，new client, old server。新客户端调用了新方法，此时会往server发送一个请求，但是旧server不认这个新方法，所以直接忽略掉。新方法增加参数，也是直接忽略掉。</li>
+<li>Removed field, old client, new server。跟上面的类似，旧客户端调用已经移除的方法，server直接忽略。</li>
+<li>Removed field, new client, old server。删除旧方法，客户端只能调用原有其他方法，此时server可以直接处理。但是如果是删除参数，那么server可能不知道如何处理参数缺失的状况。</li>
+</ul>
+<p>当然了，如果碰到实在无法适应的变化，可以通过比如java中的package名字来做区分，比如li.koly.calculator.v1，li.koly.calculator.v2等。</p>
+<h2 id="相比Restful，为什么使用RPC能得到更好的performance"><a href="#相比Restful，为什么使用RPC能得到更好的performance" class="headerlink" title="相比Restful，为什么使用RPC能得到更好的performance?"></a>相比Restful，为什么使用RPC能得到更好的performance?</h2><p>Restful是基于Http协议的规范，其使用http method来对资源进行操作。而Thrift既可以使用HTTP，也可以使用TCP。使用TCP，就可以比HTTP减少一些消耗，比如HTTP需要定义一个相对冗长的Header，而单纯使用TCP则可能会避免。<br>上面是在协议层面减小的开销。在数据传输形式上，Thrift可以选择json，也可以选择Binary及compact binary。而Restful只能使用json。在网络上传输的时候，json最终会被翻译成二进制进行传输。使用json，就必须转换一些无用的格式信息，比如括号，引号等。这些信息会导致最终传输的信息量变大。比如：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">userName</span>": <span class="value"><span class="string">"Martin"</span></span>,</span><br><span class="line">  "<span class="attribute">favouriteNumber</span>": <span class="value"><span class="number">1337</span></span>,</span><br><span class="line">  "<span class="attribute">interests</span>": <span class="value">[</span><br><span class="line">    <span class="string">"daydreaming"</span>,</span><br><span class="line">    <span class="string">"hacking"</span></span><br><span class="line">  ]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>假设一个字符占用8个bit，也就是一个byte。移除所有的空格，则需要82个bytes来对这段json进行传输。而如果使用Thrift的Binary编码方式，则只需要59个bytes。如果用Thrift的Compact Binary方式，则只需要34bytes。传输所需要的开销小了，表示同样的信息，其传输时间自然也就短了。具体过程见参考资料[5]。</p>
+<p>Thrift的IDL（Interface Definition Language):<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Person &#123;</span><br><span class="line">  <span class="number">1</span>: <span class="built_in">string</span>       userName,</span><br><span class="line">  <span class="number">2</span>: optional i64 favouriteNumber,</span><br><span class="line">  <span class="number">3</span>: <span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; interests</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Bianry编码：<br><img src="/images/binaryprotocol.png" alt="binaryprotocal"></p>
+<p>Compact Binary编码：<br><img src="/images/compactprotocol.png" alt="compactprotocal"></p>
+<h2 id="Thrift的优点和缺点"><a href="#Thrift的优点和缺点" class="headerlink" title="Thrift的优点和缺点"></a>Thrift的优点和缺点</h2><p>我觉着</p>
+<p>优点有：</p>
+<ul>
+<li>传输优势，既可以选择HTTP，也可以选择TCP</li>
+<li>格式优势，可以选择诸如Binary，CompactBinary之类的格式</li>
+<li>不同语言的代码自动生成</li>
+</ul>
+<p>缺点么：</p>
+<ul>
+<li>支持不够广泛，比如如果是跟浏览器通信的话，只能选择json。当然这也限定了Thrift的应用条件——用于后端services之间的通信</li>
+<li>文档，基本没有非常好的文档。</li>
+</ul>
+<h2 id="现在有哪些公司在使用Thrift"><a href="#现在有哪些公司在使用Thrift" class="headerlink" title="现在有哪些公司在使用Thrift?"></a>现在有哪些公司在使用Thrift?</h2><p>根据<a href="https://www.quora.com/Who-uses-Apache-Thrift-in-production" target="_blank" rel="external">Quora</a>上的答案，有这些公司：</p>
+<ul>
+<li>Evernote</li>
+<li>Quora</li>
+<li>Facebook</li>
+<li>Pinterest</li>
+</ul>
+<p>最后，顺便贴一下参考资料[9]中提到的使用JSON的场景：</p>
+<ul>
+<li>You need or want data to be human readable</li>
+<li>Data from the service is directly consumed by a web browser</li>
+<li>Your server side application is written in JavaScript</li>
+<li>You aren’t prepared to tie the data model to a schema</li>
+<li>You don’t have the bandwidth to add another tool to your arsenal</li>
+<li>The operational burden of running a different kind of network service is too great</li>
+</ul>
+<p>总的来说，Thrift是一个比较好的RPC框架，适用于后端service之间的通信。在选择Binary格式的时候，可以在带宽有限的情况下传输更多数据，同时也更快。其提供的代码生成工具能够生成不同语言的Thrift通信代码。</p>
+<p>参考资料：</p>
+<p>[1] <a href="https://en.wikipedia.org/wiki/Remote_procedure_call" target="_blank" rel="external">Remote procedure call</a><br>[2] <a href="https://thrift.apache.org/" target="_blank" rel="external">Apache Thrift</a><br>[3] <a href="http://stackoverflow.com/questions/20653240/what-is-rpc-framework-and-apache-thrift" target="_blank" rel="external">What is rpc framework and apache thrift</a><br>[4] <a href="https://thrift.apache.org/docs/concepts" target="_blank" rel="external">Apache thrift concepts</a><br>[5] <a href="http://martin.kleppmann.com/2012/12/05/schema-evolution-in-avro-protocol-buffers-thrift.html" target="_blank" rel="external">Schema evolution in Avro, Protocol Buffers and Thrift</a><br>[6] <a href="https://diwakergupta.github.io/thrift-missing-guide" target="_blank" rel="external">Thrift missing guide</a><br>[7] <a href="http://thrift-tutorial.readthedocs.org/en/latest/thrift-stack.html" target="_blank" rel="external">Thrift tutorial</a><br>[8] <a href="https://thrift.apache.org/static/files/thrift-20070401.pdf" target="_blank" rel="external">Thrift: Scalable Cross-Language Services Implementation</a><br>[9] <a href="http://blog.codeclimate.com/blog/2014/06/05/choose-protocol-buffers/" target="_blank" rel="external">Choose protocal buffers</a></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/03/15/Javascript后端开发-二/">
+        Javascript后端开发(二) →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+      
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?b9e58ce86835727eab5c9fa8c11c7f1f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+</body>
+</html>

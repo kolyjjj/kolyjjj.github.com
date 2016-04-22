@@ -124,7 +124,7 @@
             
 				    
             
-				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(15)</small></a></li>
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(16)</small></a></li>
             
 				    
               </ul>
@@ -182,7 +182,7 @@
                             
                             
                             <li class="nolink"><span>Welcome!</span></li>
-                            <li class="nolink"><span>66.7k words</span></li>
+                            <li class="nolink"><span>76.9k words</span></li>
                         </ul>
                     </nav>
                     <!--// Info-bar -->
@@ -211,7 +211,7 @@
           2015-12-29
       </time>
       |
-      <a class="no-links">3,519 words</a>
+      <a class="no-links">3,709 words</a>
     
     
     | 
@@ -267,7 +267,7 @@
 <ul>
 <li>创建一个virtual machine，然后在这个virtual machine里面安装一些东西。这时候就可以使用<code>docker-machine create --driver virtualbox &lt;machine_name&gt;</code>啦。</li>
 <li>然后告诉docker-machine，你要用这个新的docker vm啦：<code>docker-machine env &lt;machine_name&gt;</code></li>
-<li>然后需要将shell同docker machine关联起来：<code>eval &quot;$(docker-machine env &lt;machine_name&gt;)&quot;</code>。<code>docker-machine env &lt;machine_name&gt;</code>的结果是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export DOCKER_TLS_VERIFY=&#34;1&#34;&#10;export DOCKER_HOST=&#34;tcp://192.168.99.101:2376&#34;&#10;export DOCKER_CERT_PATH=&#34;/Users/mary/.docker/machine/machines/default&#34;&#10;export DOCKER_MACHINE_NAME=&#34;default&#34;&#10;# Run this command to configure your shell:&#10;# eval &#34;$(docker-machine env default)&#34;</span><br></pre></td></tr></table></figure>
+<li>然后需要将shell同docker machine关联起来：<code>eval &quot;$(docker-machine env &lt;machine_name&gt;)&quot;</code>。<code>docker-machine env &lt;machine_name&gt;</code>的结果是：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> DOCKER_TLS_VERIFY=<span class="string">"1"</span></span><br><span class="line"><span class="built_in">export</span> DOCKER_HOST=<span class="string">"tcp://192.168.99.101:2376"</span></span><br><span class="line"><span class="built_in">export</span> DOCKER_CERT_PATH=<span class="string">"/Users/mary/.docker/machine/machines/default"</span></span><br><span class="line"><span class="built_in">export</span> DOCKER_MACHINE_NAME=<span class="string">"default"</span></span><br><span class="line"><span class="comment"># Run this command to configure your shell:</span></span><br><span class="line"><span class="comment"># eval "$(docker-machine env default)"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>eval就是把这些export …全部都在当前的shell执行一遍。我猜通过设置这些property，docker client就知道怎么去访问docker host了。顺便说一句刚刚建立的虚拟机是有一个自己的ip地址的。使用<code>docker-machine ip &lt;machine_name&gt;</code>可以得到该machine的ip，然后docker-machine ls可以列出所有的docker machine。</p>
@@ -388,7 +388,7 @@
 </tbody>
 </table>
 <p>使用container_id的地方也可以使用container_name。</p>
-<h2 id="创建image"><a href="#创建image" class="headerlink" title="创建image"></a>创建image</h2><p>创建一个image，就是创建一个模板，里面定义了这个image包含了哪些内容。这个模板叫做Dockerfile。有了Dockerfile之后，就可以通过命令<code>docker build &lt;directory that contains Dockerfile&gt;</code>来生成image了。这个过程就是根据Dockerfile来执行各种操作。下面是一个Nginx的Dockerfile:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:jessie&#10;MAINTAINER koly li &#60;kolyjjj@foxmail.com&#62;&#10;ADD ./nginx_signing.key /tmp/&#10;RUN chmod 755 /tmp/nginx_signing.key&#10;RUN apt-key add /tmp/nginx_signing.key&#10;RUN echo &#34;deb http://nginx.org/packages/debian/ jessie nginx&#34; &#62;&#62; /etc/apt/sources.list&#10;RUN apt-get update &#38;&#38; apt-get install -y curl vim nginx &#38;&#38; apt-get clean &#38;&#38; rm -rf /var/lib/apt/lists/*&#10;RUN mkdir -p /var/www/html&#10;# backup the default.conf file&#10;RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_bac&#10;ADD global.conf /etc/nginx/conf.d/</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建image"><a href="#创建image" class="headerlink" title="创建image"></a>创建image</h2><p>创建一个image，就是创建一个模板，里面定义了这个image包含了哪些内容。这个模板叫做Dockerfile。有了Dockerfile之后，就可以通过命令<code>docker build &lt;directory that contains Dockerfile&gt;</code>来生成image了。这个过程就是根据Dockerfile来执行各种操作。下面是一个Nginx的Dockerfile:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:jessie</span><br><span class="line">MAINTAINER koly li &lt;kolyjjj@foxmail.com&gt;</span><br><span class="line">ADD ./nginx_signing.key /tmp/</span><br><span class="line">RUN chmod <span class="number">755</span> /tmp/nginx_signing.key</span><br><span class="line">RUN apt-key add /tmp/nginx_signing.key</span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">"deb http://nginx.org/packages/debian/ jessie nginx"</span> &gt;&gt; /etc/apt/sources.list</span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y curl vim nginx &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br><span class="line">RUN mkdir -p /var/www/html</span><br><span class="line"><span class="comment"># backup the default.conf file</span></span><br><span class="line">RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_bac</span><br><span class="line">ADD global.conf /etc/nginx/conf.d/</span><br></pre></td></tr></table></figure></p>
 <p>最前面的大写的是docker提供的命令，<a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="external">这里</a>是docker file的文档。</p>
 <h2 id="坑和tips"><a href="#坑和tips" class="headerlink" title="坑和tips"></a>坑和tips</h2><ul>
 <li>在mac电脑上使用docker时，会创建一个vbox的虚拟机，然后在这个虚拟机里面操作。在做docker nginx时，发现mount的volume，在host上改动之后，container里面的nginx无法及时发现改动。比如在host里面更新了index.html文件，但是更新的内容没有出现在浏览器里。google之后发现是一个virtual<br>box的bug。github在<a href="https://github.com/kolyjjj/docker-nginx" target="_blank" rel="external">这里</a>。关于那个bug的讨论在<a href="https://github.com/nginxinc/docker-nginx/issues/24" target="_blank" rel="external">这里</a></li>
