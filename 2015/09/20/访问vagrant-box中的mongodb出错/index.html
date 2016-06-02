@@ -124,7 +124,7 @@
             
 				    
             
-				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(16)</small></a></li>
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(17)</small></a></li>
             
 				    
               </ul>
@@ -182,7 +182,7 @@
                             
                             
                             <li class="nolink"><span>Welcome!</span></li>
-                            <li class="nolink"><span>76.9k words</span></li>
+                            <li class="nolink"><span>86.2k words</span></li>
                         </ul>
                     </nav>
                     <!--// Info-bar -->
@@ -211,7 +211,7 @@
           2015-09-20
       </time>
       |
-      <a class="no-links">897 words</a>
+      <a class="no-links">1,067 words</a>
     
     
     | 
@@ -232,12 +232,12 @@
 <li>把mongodb的端口映射到host的端口(config.vm.network “forwarded_port”, guest: 27017, host: 10087)，然后reload box哦</li>
 <li>在外面的host主机里面使用nodejs代码访问box里面的mongodb</li>
 </ul>
-<p>错误消息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules/mongodb/lib/server.js:235&#10;        process.nextTick(function() &#123; throw err; &#125;)&#10;mongoError: server localhost:10087 received an error &#123;&#34;name&#34;:&#34;MongoError&#34;,&#34;message&#34;:&#34;write EPIPE&#34;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>刚开始google了一下，关键字是“mongodb error write EPIPE”，结果出来的东西完全不是我想要的。后来突然想了想，会不会是node的错误，而不是mongo的错误呢。于是换成“node error write EPIPE”，然后出来的结果就比较中意了。大意就是说对方中断了连接(connection)。这下知道是vagrant中的mongo问题。于是再次更换搜索词，变成“vagrant mongdo”，运气比较好，刚好有一篇文章，<a href="http://randomgeekery.org/tools/2014/08/06_mongo-vagrant-connect.html" target="_blank" rel="external">这里</a>。参考这篇文章，就把问题给解决了。<br>中途为了确认是不是mongodb有没有连接上，在代码里面更改了mongo url，结果出现无法连接的错误，证明mongodb是连接上了的。恩，还是首先要确定问题的范围。<br>这里贴上连接的代码，使用了koajs：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var koa = require(&#39;koa&#39;);&#10;var mongo = require(&#39;koa-mongo&#39;);&#10;var assert = require(&#39;assert&#39;);&#10;var url = &#39;mongodb://localhost:10087/test&#39;;&#10;&#10;var app = koa();&#10;&#10;app.use(mongo(&#123;&#10;  uri: &#39;mongodb://localhost:10087/test&#39;, //or url&#10;  max: 100,&#10;  min: 1,&#10;  timeout: 30000,&#10;  log: false&#10;&#125;));</span><br></pre></td></tr></table></figure></p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="# 原因"></a># 原因</h3><p>原因就是在<code>/etc/mongod.conf</code>中有一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Listen to local interface only. Comment out to listen on all interfaces.&#10;bind_ip = 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>错误消息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node_modules/mongodb/lib/server.js:235</span><br><span class="line">        process.nextTick(function() &#123; throw err; &#125;)</span><br><span class="line">mongoError: server localhost:10087 received an error &#123;&quot;name&quot;:&quot;MongoError&quot;,&quot;message&quot;:&quot;write EPIPE&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>刚开始google了一下，关键字是“mongodb error write EPIPE”，结果出来的东西完全不是我想要的。后来突然想了想，会不会是node的错误，而不是mongo的错误呢。于是换成“node error write EPIPE”，然后出来的结果就比较中意了。大意就是说对方中断了连接(connection)。这下知道是vagrant中的mongo问题。于是再次更换搜索词，变成“vagrant mongdo”，运气比较好，刚好有一篇文章，<a href="http://randomgeekery.org/tools/2014/08/06_mongo-vagrant-connect.html" target="_blank" rel="external">这里</a>。参考这篇文章，就把问题给解决了。<br>中途为了确认是不是mongodb有没有连接上，在代码里面更改了mongo url，结果出现无法连接的错误，证明mongodb是连接上了的。恩，还是首先要确定问题的范围。<br>这里贴上连接的代码，使用了koajs：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var koa = require(&apos;koa&apos;);</span><br><span class="line">var mongo = require(&apos;koa-mongo&apos;);</span><br><span class="line">var assert = require(&apos;assert&apos;);</span><br><span class="line">var url = &apos;mongodb://localhost:10087/test&apos;;</span><br><span class="line"></span><br><span class="line">var app = koa();</span><br><span class="line"></span><br><span class="line">app.use(mongo(&#123;</span><br><span class="line">  uri: &apos;mongodb://localhost:10087/test&apos;, //or url</span><br><span class="line">  max: 100,</span><br><span class="line">  min: 1,</span><br><span class="line">  timeout: 30000,</span><br><span class="line">  log: false</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="# 原因"></a># 原因</h3><p>原因就是在<code>/etc/mongod.conf</code>中有一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Listen to local interface only. Comment out to listen on all interfaces.</span><br><span class="line">bind_ip = 127.0.0.1</span><br></pre></td></tr></table></figure></p>
 <p>这行的意思是说，我这个mongodb只接受本地(127.0.0.1)的连接，别的么，呵呵，我就关掉了。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="# 解决方案"></a># 解决方案</h3><p>把上面configuration里的那行注释掉就好了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Listen to local interface only. Comment out to listen on all interfaces.&#10;# bind_ip = 127.0.0.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Listen to local interface only. Comment out to listen on all interfaces.</span><br><span class="line"># bind_ip = 127.0.0.1</span><br></pre></td></tr></table></figure>
 <p>行首加一个<code>#</code>。</p>
 <hr>
 <p>总结一下，遇到问题，还是要冷静分析，首先尽可能缩小问题的范围。然后再寻找解决方案。google的搜索词必要时候多换几个试试。最后，这种类似的有警醒意义的东西自然要用博客的方式记录下来。</p>

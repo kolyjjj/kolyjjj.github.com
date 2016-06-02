@@ -124,7 +124,7 @@
             
 				    
             
-				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(16)</small></a></li>
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(17)</small></a></li>
             
 				    
               </ul>
@@ -182,7 +182,7 @@
                             
                             
                             <li class="nolink"><span>Welcome!</span></li>
-                            <li class="nolink"><span>76.9k words</span></li>
+                            <li class="nolink"><span>86.2k words</span></li>
                         </ul>
                     </nav>
                     <!--// Info-bar -->
@@ -211,7 +211,7 @@
           2016-04-22
       </time>
       |
-      <a class="no-links">9,931 words</a>
+      <a class="no-links">9,919 words</a>
     
     
     | 
@@ -268,7 +268,7 @@
 <li>Removed field, new client, old server。删除旧方法，客户端只能调用原有其他方法，此时server可以直接处理。但是如果是删除参数，那么server可能不知道如何处理参数缺失的状况。</li>
 </ul>
 <p>当然了，如果碰到实在无法适应的变化，可以通过比如java中的package名字来做区分，比如li.koly.calculator.v1，li.koly.calculator.v2等。</p>
-<h2 id="相比Restful，为什么使用RPC能得到更好的performance"><a href="#相比Restful，为什么使用RPC能得到更好的performance" class="headerlink" title="相比Restful，为什么使用RPC能得到更好的performance?"></a>相比Restful，为什么使用RPC能得到更好的performance?</h2><p>Restful是基于Http协议的规范，其使用http method来对资源进行操作。而Thrift既可以使用HTTP，也可以使用TCP。使用TCP，就可以比HTTP减少一些消耗，比如HTTP需要定义一个相对冗长的Header，而单纯使用TCP则可能会避免。<br>上面是在协议层面减小的开销。在数据传输形式上，Thrift可以选择json，也可以选择Binary及compact binary。而Restful只能使用json。在网络上传输的时候，json最终会被翻译成二进制进行传输。使用json，就必须转换一些无用的格式信息，比如括号，引号等。这些信息会导致最终传输的信息量变大。比如：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">userName</span>": <span class="value"><span class="string">"Martin"</span></span>,</span><br><span class="line">  "<span class="attribute">favouriteNumber</span>": <span class="value"><span class="number">1337</span></span>,</span><br><span class="line">  "<span class="attribute">interests</span>": <span class="value">[</span><br><span class="line">    <span class="string">"daydreaming"</span>,</span><br><span class="line">    <span class="string">"hacking"</span></span><br><span class="line">  ]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="相比Restful，为什么使用RPC能得到更好的performance"><a href="#相比Restful，为什么使用RPC能得到更好的performance" class="headerlink" title="相比Restful，为什么使用RPC能得到更好的performance?"></a>相比Restful，为什么使用RPC能得到更好的performance?</h2><p>Restful是基于Http协议的规范，其使用http method来对资源进行操作。而Thrift既可以使用HTTP，也可以使用TCP。使用TCP，就可以比HTTP减少一些消耗，比如HTTP需要定义一个相对冗长的Header，而单纯使用TCP则可能会避免。<br>上面是在协议层面减小的开销。在数据传输形式上，Thrift可以选择json，也可以选择Binary及compact binary。而Restful只能使用json。在网络上传输的时候，json最终会被翻译成二进制进行传输。使用json，就必须转换一些无用的格式信息，比如括号，引号等。这些信息会导致最终传输的信息量变大。比如：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"userName"</span>: <span class="string">"Martin"</span>,</span><br><span class="line">  <span class="attr">"favouriteNumber"</span>: <span class="number">1337</span>,</span><br><span class="line">  <span class="attr">"interests"</span>: [</span><br><span class="line">    <span class="string">"daydreaming"</span>,</span><br><span class="line">    <span class="string">"hacking"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>假设一个字符占用8个bit，也就是一个byte。移除所有的空格，则需要82个bytes来对这段json进行传输。而如果使用Thrift的Binary编码方式，则只需要59个bytes。如果用Thrift的Compact Binary方式，则只需要34bytes。传输所需要的开销小了，表示同样的信息，其传输时间自然也就短了。具体过程见参考资料[5]。</p>
 <p>Thrift的IDL（Interface Definition Language):<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Person &#123;</span><br><span class="line">  <span class="number">1</span>: <span class="built_in">string</span>       userName,</span><br><span class="line">  <span class="number">2</span>: optional i64 favouriteNumber,</span><br><span class="line">  <span class="number">3</span>: <span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; interests</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Bianry编码：<br><img src="/images/binaryprotocol.png" alt="binaryprotocal"></p>
@@ -309,6 +309,10 @@
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/05/29/gradle简介——从编程的角度/" style="float: left;">
+        ← gradle简介——从编程的角度
+    </a>
     
     
     <a class="pull-right" href="/2016/03/15/Javascript后端开发-二/">

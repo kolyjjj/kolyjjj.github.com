@@ -124,7 +124,7 @@
             
 				    
             
-				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(16)</small></a></li>
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(17)</small></a></li>
             
 				    
               </ul>
@@ -182,7 +182,7 @@
                             
                             
                             <li class="nolink"><span>Welcome!</span></li>
-                            <li class="nolink"><span>76.9k words</span></li>
+                            <li class="nolink"><span>86.2k words</span></li>
                         </ul>
                     </nav>
                     <!--// Info-bar -->
@@ -211,7 +211,7 @@
           2016-03-11
       </time>
       |
-      <a class="no-links">4,125 words</a>
+      <a class="no-links">4,176 words</a>
     
     
     | 
@@ -277,7 +277,7 @@
 <li>null没有<code>[[Prototype]]</code></li>
 </ul>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>有了对上面这些概念的理解，我们再来看看由<code>koly</code>引出的原型链：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">koly.__proto__ === <span class="built_in">Object</span>.prototype;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
-<p>上面就是<code>koly</code>的原型链，比较简单。我们再来看看<code>Object</code>的原型链：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.__proto__ === Function.prototype;&#10;// true&#10;Function.prototype.__proto__ === Object.prototype;&#10;// true&#10;Object.prototype.__proto__ === null&#10;//true</span><br></pre></td></tr></table></figure></p>
+<p>上面就是<code>koly</code>的原型链，比较简单。我们再来看看<code>Object</code>的原型链：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Object.__proto__ === Function.prototype;</span><br><span class="line">// true</span><br><span class="line">Function.prototype.__proto__ === Object.prototype;</span><br><span class="line">// true</span><br><span class="line">Object.prototype.__proto__ === null</span><br><span class="line">//true</span><br></pre></td></tr></table></figure></p>
 <p>上面的<code>Object</code>和<code>Function</code>都是constructor，就是函数。<strong>原型链的链条是由<code>__proto__</code>来实现的</strong>。在跟原型链的时候只需聚焦<code>__proto__</code>就行了，constructor的<code>prototype</code>只是一个会出现在原型链条里面的特殊对象。<br>constructor的prototype会在使用constructor创建对象的时候赋给该对象的<code>__proto__</code>。由于koly是通过<code>Object</code>这个constructor创建的，所以<code>koly.__proto__</code>也就指向了<code>Object.prototype</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> aAnimal = <span class="keyword">new</span> Animal();</span><br><span class="line">aAnimal.__proto__ === Animal.prototype;</span><br><span class="line"><span class="comment">// true</span></span><br><span class="line">Animal.prototype.__proto__ === <span class="built_in">Object</span>.prototype;</span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
 <h2 id="原型链有什么用？"><a href="#原型链有什么用？" class="headerlink" title="原型链有什么用？"></a>原型链有什么用？</h2><p>先来看一段文字：</p>
 <blockquote>

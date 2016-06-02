@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>gradle简介——从编程的角度 | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <!-- <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/github.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <div class="author">
+            <a href="/about">
+              <img src="/img/koly.png" alt="author"/>
+            </a>
+            <p>
+              koly
+            </p>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+            
+				    
+            
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(17)</small></a></li>
+            
+				    
+              </ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                            <li class="nolink"><span>86.2k words</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-05-29T14:42:36.000Z" itemprop="datePublished">
+          2016-05-29
+      </time>
+      |
+      <a class="no-links">4,200 words</a>
+    
+    
+    | 
+    <a href='/tags/gradle/'>gradle</a>
+    
+    
+</span>
+
+                <h1>gradle简介——从编程的角度</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>写代码的时候，往往需要一些依赖库，以及一些一般操作，比如代码编译，打包啊。在JAVA的世界里，这些功能的实现经历了ant+ivy，maven，到gradle的过程。最早的时候什么工具都没有，需要一个库，手动下载拷贝。编译，打包，最多也就写个脚本。后来出现了ant和ivy，ant用来执行编译，打包之类的任务，ivy用来管理依赖的库。后面有了maven，通过xml的形式来进行配置，根据配置来管理依赖以及执行任务。接着出现了gradle，实现的功能跟maven差不多，但是在定制化方面可以使用语言进行编程，而不是通过增加maven插件的形式。那么，下面就讲讲一次对gradle的探索过程。<a id="more"></a></p>
+<h3 id="gradle与groovy"><a href="#gradle与groovy" class="headerlink" title="gradle与groovy"></a>gradle与groovy</h3><p>gradle与groovy是什么关系呢？首先来看看它们各自是什么。</p>
+<h3 id="groovy"><a href="#groovy" class="headerlink" title="groovy"></a>groovy</h3><p>先来看看<a href="http://www.groovy-lang.org/" target="_blank" rel="external">官网</a>定义咯：</p>
+<blockquote>
+<p>Apache Groovy is a powerful, optionally typed and dynamic language, with static-typing and static compilation capabilities, for the Java platform aimed at improving developer productivity thanks to a concise, familiar and easy to learn syntax. It integrates smoothly with any Java program, and immediately delivers to your application powerful features, including scripting capabilities, Domain-Specific Language authoring, runtime and compile-time meta-programming and functional programming.</p>
+</blockquote>
+<p>简单来说，就是一门语言。(我要是只写到这里，你会不会打我…)<br>多说一点，是一门强大的语言。运行在JVM(Java Virtual Machine)上。学起来简单。可以用来写脚本，写DSL(<a href="http://martinfowler.com/bliki/DomainSpecificLanguage.html" target="_blank" rel="external">Domain Specific Language</a>)。</p>
+<h4 id="gradle"><a href="#gradle" class="headerlink" title="gradle"></a>gradle</h4><p>先来看看<a href="https://docs.gradle.org/current/userguide/introduction.html" target="_blank" rel="external">官网</a>定义：</p>
+<blockquote>
+<p>We would like to introduce Gradle to you, a build system that we think is a quantum leap for build technology in the Java (JVM) world.</p>
+</blockquote>
+<p>“that”后面的部分不用太在意，就是说我们是JAVA(JVM)世界里面很牛逼的一个构建系统(build system)。就是说，gradle是一个构建系统。</p>
+<p>它提供了什么功能呢？</p>
+<blockquote>
+<p>A very flexible general purpose build tool like Ant.<br>Switchable, build-by-convention frameworks a la Maven. But we never lock you in!<br>Very powerful support for multi-project builds.<br>Very powerful dependency management (based on Apache Ivy).<br>Full support for your existing Maven or Ivy repository infrastructure.<br>Support for transitive dependency management without the need for remote repositories or pom.xml and ivy.xml files.<br>Ant tasks and builds as first class citizens.<br>Groovy build scripts.<br>A rich domain model for describing your build. </p>
+</blockquote>
+<p>摘几个出来讲讲。这是一个像Ant一样的构建工具(build tool)。对多个项目的构建具有强大支持。基于Apache Ivy的依赖管理。使用Groovy语言来编写构建脚本(build<br>scripts)。这里的构建脚本是什么意思呢？一般来说，你要对一个项目进行构建，就需要写一些指导构建的文件，比如maven就是一个pom.xml。各种工具通过解析这个文件就可以知道怎么去构建一个项目。这里的构建就包括了依赖的管理，命令的执行。比如下载个依赖包啊，升级个依赖包啊，执行个测试命令啊，执行个打包命令啊。构建脚本就是指这个文件。<br>这里其实就指出了gradle与groovy的关系：gradle使用groovy来写构建脚本。但是到这里呢，还不够。<br>在官网的<a href="https://docs.gradle.org/current/userguide/overview.html" target="_blank" rel="external">overview</a>中，又介绍了一句”The whole Gradle API is fully Groovy-ized”。就是说gradle的API都是可以直接运行在Groovy环境中的，能够被Groovy直接调用。<br>最后呢，gradle是开源的，源码在这里：<a href="https://github.com/gradle/gradle" target="_blank" rel="external">https://github.com/gradle/gradle</a>。gradle的编写语言是Java和Groovy。</p>
+<h3 id="gradle当中的概念"><a href="#gradle当中的概念" class="headerlink" title="gradle当中的概念"></a>gradle当中的概念</h3><p>由于是从编程的角度，所以什么wrapper，daemon就不提及了。这里主要想看看gradle是怎么使用groovy的。整个探索的过程是起于<a href="https://docs.gradle.org/current/dsl/" target="_blank" rel="external">Gradle Build Language Reference</a>。</p>
+<h4 id="gradle-scripts"><a href="#gradle-scripts" class="headerlink" title="gradle scripts"></a>gradle scripts</h4><p>gradle scripts就是gralde的脚本文件。有三种，分别是Build script, Init script, Settings script。对应的文件应该是build.gradle, init.gradle, settings.gradle。<br>gradle scripts是一种configuration scripts。顾名思义，就是说在执行scripts的过程中，会进行一些配置。这些配置呢，是对某个对象的配置。就是说设置一下这个对象的某个属性啊，调用一下这个对象的某些方法啊，等等。比如在build.gradle执行的过程中，实际上就是对一个Project对象的配置。这个对象就叫做script的delegate object。delegate object上的属性和方法都可以在script当中使用。每一个script对应着一个对象，比如一个build.gradle就对应着一个Project对象。<br>还有，gradle script实现了Script接口，也就是说该接口上的所有方法都可以在gradle script里面调用。<br>到这里，我就疑惑了。为什么gradle script可以实现接口呢？delegate object跟script本身又是什么关系呢？参考一下Groovy，可能会有些答案。</p>
+<p>Groovy当中也有script这一概念，只是跟gradle这里的gradle script可能不太一样。那么，Groovy当中的script概念是什么样的呢？<br>首先，Groovy作为在JVM上运行的语言，是支持类的。比如你想写一个Hello World，需要：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> &#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> main(String... args) &#123;</span><br><span class="line">        println <span class="string">'Groovy world!'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此为类，script呢？<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">println <span class="string">'Groovy world!'</span></span><br></pre></td></tr></table></figure></p>
+<p>简单来说，就是并不需要类，直接写变量，语句，函数等。这就叫script。（貌似其他语言也是这样定义的呢）<br>但是，我们知道Groovy是运行在JVM上的。JVM上并没有script这一概念，只有类和对象。那么script想要执行，就必然要变成类，然后实例化为对象。真的是这样的吗？<br>是的。script会被编译成类。比如上面的Hello World编译之后就变成了：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.codehaus.groovy.runtime.InvokerHelper</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Script</span> &#123;</span></span><br><span class="line">    <span class="keyword">def</span> run() &#123;</span><br><span class="line">        println <span class="string">'Groovy world!'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">        InvokerHelper.runScript(Main, args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>里面的东西不用细看，这里只需要知道：script会被编译成一个类，然后script当中的代码会在这个类中的某个地方得到执行。<br>由于script会被编译成一个类，所以自然也可以实现接口了。那么script中的delegate object又是什么呢？是不是指类中的一个属性呢？<br>Groovy中，script没有一个delegate的概念，但是closure却有一个。先开条分线，看看closure是什么。<br>官方定义：</p>
+<blockquote>
+<p>A closure in Groovy is an open, anonymous, block of code that can take arguments, return a value and be assigned to a variable. A closure may reference variables declared in its surrounding scope. </p>
+</blockquote>
+<p>简单来说，closure是一段代码，这段代码可以接受参数，能够返回一个值，并且这段代码可以被赋给一个变量。同时，这段代码也可以应用定义在其外层的变量。这样看来，跟一个匿名函数非常像。可以暂时想象成一个匿名函数。<br>closure的定义：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; [closureParameters -&gt; ] statements &#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中中括号的部分是可选的。就是说类似<code>{ item++ }</code>，<code>{ -&gt; item++ }</code>，<code>{ println it }</code>都是closure。<br>当然，由于groovy是跑在JVM上的语言，所以closure最后也会变成一个对象。实际上，closure是<code>groovy.lang.Closure</code>类的一个对象。closure其他的特点暂不必说，先看看它的delegate是什么样的。由于closure是一个对象，所以自然也可以有自己的属性：</p>
+<blockquote>
+<p><strong>this</strong> corresponds to the enclosing class where the closure is defined<br><strong>owner</strong> corresponds to the enclosing object where the closure is defined, which may be either a class or a closure<br><strong>delegate</strong> corresponds to a third party object where methods calls or properties are resolved whenever the receiver of the message is not defined</p>
+</blockquote>
+<p>前两个this和owner暂不说，delegate属性，指向了一个第三方对象。所有在closure中没有主体的方法调用或者属性都会到这个第三方对象中去找。举个例子：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line">    String name</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thing</span> &#123;</span></span><br><span class="line">    String name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> p = <span class="keyword">new</span> Person(<span class="string">name:</span> <span class="string">'Norman'</span>)</span><br><span class="line"><span class="keyword">def</span> t = <span class="keyword">new</span> Thing(<span class="string">name:</span> <span class="string">'Teapot'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> upperCasedName = &#123; delegate.name.toUpperCase() &#125;</span><br><span class="line">upperCasedName.delegate = p</span><br><span class="line"><span class="keyword">assert</span> upperCasedName() == <span class="string">'NORMAN'</span></span><br></pre></td></tr></table></figure></p>
+<p>上面，upperCasedName是一个closure，然后里面的delegate是其的一个属性。之后将upperCaseName的delegate指向了对象p，然后里面的<code>delegate.name</code>实际上就在p对象上去找了。</p>
+<p>关于closure的delegate，关键的一点就是，没有定义的方法或者属性会去closure的delegate object上去找。这种机制就跟上面提到的”delegate object上的属性和方法都可以在script当中使用。”行为上一致了。至于其背后的delegate object是怎么实现的，是不是跟closure的delegate方式一致，且听下回分解。</p>
+<p>还有一点是，closure的这种到其他地方去找函数或者属性的行为称为delegation strategy。默认的strategy是<code>Closure.OWNER_FIRST</code>，首先会在closure上的owner找，然后回去closure上的delegate找。还有比如<code>Closure.DELEGATE_FIRST</code>,<code>Closure.DELEGATE_ONLY</code>之类。</p>
+<p>到这里，小结一下：</p>
+<ul>
+<li>gradle的script是一个对象，该对象实现了com.gradle.Script接口，该接口上的所有方法都可以在script中调用。</li>
+<li>gradle的每种script有一个对应的delegate object，在script中可以使用该delegate object的属性和方法。比如build.gradle的delegate object就是一个Project对象。而settings.gradle的delegate object就是一个Settings对象。具体可以在settings.gralde中访问settings，在build.gradle中访问project对象。</li>
+<li>在调用delegate object上的方法和属性的时候，实际也是在对delegate object进行配置。比如设置这个对象的某个属性什么的。</li>
+</ul>
+<h3 id="lifecycle"><a href="#lifecycle" class="headerlink" title="lifecycle"></a>lifecycle</h3><p>来自官网，gradle配置Project对象的生命周期：</p>
+<ul>
+<li>Create a Settings instance for the build.</li>
+<li>Evaluate the settings.gradle script, if present, against the Settings object to configure it.</li>
+<li>Use the configured Settings object to create the hierarchy of Project instances.</li>
+<li>Finally, evaluate each Project by executing its build.gradle file, if present, against the project. The projects are evaluated in breadth-wise order, such that a project is evaluated before its child projects.</li>
+</ul>
+<h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>gradle里面，执行的代码段通过task这种形式组织起来。比如对于JAVA，compile，install都是task，然后各自完成一些事情，比如编译，打包。</p>
+<h4 id="task的定义"><a href="#task的定义" class="headerlink" title="task的定义"></a>task的定义</h4><p>有两种方式，<br>使用task keyword。这里的keyword很奇怪，task并不是Groovy的keyword，应该是gradle自己定义的，怎么定义的这里先不展开。就看看怎么使用：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">task myTask</span><br><span class="line">task myTask &#123; configure closure &#125;</span><br><span class="line">task myType &lt;&lt; &#123; task action &#125;</span><br><span class="line">task myTask(<span class="string">type:</span> SomeType)</span><br><span class="line">task myTask(<span class="string">type:</span> SomeType) &#123; configure closure &#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种方式是使用TaskContainer.create函数，这里的TaskContainer是一个接口，不是一个类，所以：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TaskContainer.create(taskName, &#123;closure&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>上面那样用，是不行的，不能直接调用接口上的函数。得有一个实现。在build.gradle里面可以：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">project.getTasks().create(taskName, &#123;closure&#125;)</span><br><span class="line">project.getTasks().create taskName, closure</span><br></pre></td></tr></table></figure></p>
+<p>build.gradle里面使用project.getTasks()，这个函数会返回一个TaskContainer的实例，所以就可以调用这上面的值了。注意在省略括号的情况下，参数之间需要加上逗号。</p>
+<h4 id="task-后面的closure"><a href="#task-后面的closure" class="headerlink" title="task 后面的closure"></a>task 后面的closure</h4><p>task后面传入的closure，有两个特点。第一是这个closure的delegate是这个task对象；第二是这个closure的参数是task对象。所以有两种方式去获取这个task对象：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">task oneTask &#123; t -&gt;</span><br><span class="line">    print t</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">task oneTask &#123;</span><br><span class="line">    println delegate</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>task对象上的属性和方法可以查看具体<a href="https://docs.gradle.org/current/dsl/org.gradle.api.Task.html" target="_blank" rel="external">文档</a>。</p>
+<h3 id="查文档"><a href="#查文档" class="headerlink" title="查文档"></a>查文档</h3><p>有一些文档是应该看看的，去熟悉一下可以使用的方法及属性，比如Project的文档：<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html#buildscript(groovy.lang.Closure" target="_blank" rel="external">https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html#buildscript(groovy.lang.Closure)</a>)</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>不要把gradle当成maven，记住，gradle是可以直接写代码的，直接写代码的，直接写代码的。然后，得知道可以使用的函数和属性从哪里来，也就说需要使用的时候去哪里找。<br>所谓的DSL，其实就是Groovy类中的函数或者属性，通过delegate这种机制，可以直接在gradle scirpt里面调用这些函数，然后这些函数又可以接受一个closure作为参数，于是看起来就变得像配置文件了。此为编程语言的配置化伪装。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/04/22/RPC-and-Apache-Thrift/">
+        RPC and Apache Thrift →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+      
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?b9e58ce86835727eab5c9fa8c11c7f1f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+</body>
+</html>
