@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>聊聊scala学习 | Koly&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Koly's blog">
+    <meta name="author" content="koly">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <!-- <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico"> -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" href="/atom.xml" title="Koly&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/github.css" type="text/css">
+    
+
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <div class="author">
+            <a href="/about">
+              <img src="/img/koly.png" alt="author"/>
+            </a>
+            <p>
+              koly
+            </p>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+            
+				    <li><a href="/categories/Reading/" class="animsition-link">Reading<small>(1)</small></a></li>
+            
+				    
+            
+				    <li><a href="/categories/Tech/" class="animsition-link">Tech<small>(18)</small></a></li>
+            
+				    
+              </ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/kolyjjj" class="animsition-link">github</a></li>
+                    
+                    <li><a href="http://www.douban.com/people/59390507/notes" class="animsition-link">douban</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Koly's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                            <li class="nolink"><span>107.1k words</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-17T09:18:13.000Z" itemprop="datePublished">
+          2016-08-17
+      </time>
+      |
+      <a class="no-links">6,866 words</a>
+    
+    
+    | 
+    <a href='/tags/scala/'>scala</a>
+    
+    
+</span>
+
+                <h1>聊聊scala学习</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>最近又在学习scala（好吧，为什么我要说又呢？）。为什么又要学习scala呢？因为有一天我看到一段java代码的时候，不知道为什么，有点想吐了。于是又开始学习scala。然后基本是通过读《programming in scala》同时配合一些网上的资料来学习。接下来就随便聊聊scala的学习吧。<a id="more"></a></p>
+<h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3><p>什么是抽象呢？据说就是从众多的事物中抽取出共同的、本质的特征，而舍弃其非本质的特征。我理解的是：将多个事物的共同的地方抽取出来，然后给它一个名字。所以有几点：</p>
+<ul>
+<li>事物的共同特性。</li>
+<li>将事物的属性进行抽取，也就是说聚焦在某个或者某几个属性上，同时忽略其他属性</li>
+<li>给它一个名字</li>
+</ul>
+<p>举个例子，比如“前肢”这个抽象，就是将动物的距离头部较近的肢体抽取出来，忽略掉其他的部位，然后给一个名字。<br>在进行抽象的时候，往往需要知道事物的属性有哪些，然后聚焦在一个或者几个属性上，看看是不是应该进行抽取，命名。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>分类，又可以叫分门别类。就是把具有相似属性的东西放在一起，形成一个门类。分类是人类进行组织的一个重要方式。典型的例子就是图书馆，分类存放，同时分类检索，以此提高使用效率，减少检索时间。</p>
+<h3 id="还原论"><a href="#还原论" class="headerlink" title="还原论"></a>还原论</h3><p>先来看一下百度百科的定义：</p>
+<blockquote>
+<p>最新的大不列颠百科全书把还原论定义为：“在哲学上，还原论是一种观念，它认为某一给定实体是由更为简单的或更为基础的实体所构成的集合或组合；或认为这些实体的表述可依据更为基础的实体的表述来定义。”还原论方法是经典科学方法的内核，将高层的、复杂的对象分解为较底层的、简单的对象来处理；世界的本质在于简单性。</p>
+</blockquote>
+<p>还原论，是西方哲学中的一种思想，或者说思维方式。即认为复杂的事物可以由初级或者基本的事物组成。比如组成物质的基本是分子，分子又有原子。强调将复杂事物分解成基本事物，将基本事物组成复杂事物。</p>
+<h3 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h3><p>语言，我认为就是一堆符号，用于记录和交流。比如你想跟美国人交流，可能你就得会英语。<br>编程语言，就是跟计算机交流的一堆符号。那么，问题来了，我们为什么要跟计算机交流呢？交流的目的是什么？人和人之间的交流目的可能有很多，有情感上的，经济上的等。但是跟计算机交流，我觉得目的就比较单纯了。计算机能做什么事情呢？计算。所以跟计算机的交流主要是希望计算机能帮忙完成一些计算工作。</p>
+<h3 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h3><p>查了一下百度，数学上，计算是指“一种将单一或复数之输入转换为单一或复数之结果的一种思考过程”。没什么感觉也没关系。来看看具体的计算，比如在数学上的计算就是数及其加减乘除，而对于字符上的运算，就有诸如拼接，加减之类的了。这个时候，我们可以直接结合语言来看计算的具体形式。<br>一般来说，计算都有两个要素：</p>
+<ul>
+<li>计算方式，比如加减乘除</li>
+<li>计算所使用的数据，比如整数，浮点数</li>
+</ul>
+<p>用另一个名字来说，我们可以理解为数据及其操作。比如1 + 1 = 2，两个1就是数据，加就是数据上的操作。<br>有数据，就会对数据进行分类，也就有了数据类型。为什么要对数据进行分类呢？一是能够更好的理解；二是能够更好的管理。分类之后，针对每种类型，又有具体的操作。那么我们首先来看看scala中对数据的分类。<br>第一个是将数据分为基本类型和复合类型。区别在于复合类型是由基本类型组成。换句话说复合类型就是将多个基本类型放在一起。<br>这里先看看基本类型，复合类型后面会谈到。基本类型有：</p>
+<ul>
+<li>数字(numeric types)。一般来说有整型和浮点型，整型表示整数，浮点型表示带有小数的数字。整型一般有Byte, Short, Int, Long, 其区别是取值范围，或者说是位数。浮点型往往有Float, Double型，区别也是取值范围。</li>
+<li>字符。这里包括了字符和字符串。字符串就是一系列的字符。</li>
+<li>bool。一般来说包括了true和false。</li>
+</ul>
+<p>这里有一个成为”literal”的东西，中文一般翻译为”字面量“。来看看是什么意思：</p>
+<blockquote>
+<p>Taking words in their usual or most basic sense without metaphor or exaggeration.</p>
+</blockquote>
+<p>就是说用最常用或者最基本的方式来表达一个意思，其中没有任何隐喻或者夸张的成分。就是说直接简单。比如，你想有一个字符串，直接写“hello world“，这个东西就是一个literal。同样，直接写4，4.5，true，false，也是literal。</p>
+<p>有了基本数据类型，就会有针对每种数据类型的计算。这里就有一个数据及对数据的操作的意思了。对不同的数据可能的操作有：</p>
+<ul>
+<li>数字类型。这个地方跟数学很想，基本的就有加、减、乘、除、取余等。同时也可能有大于，等于，小于等比较操作。</li>
+<li>字符类型。最先想到的就是拼接，从一个字符串中找到其中一个字符等。</li>
+<li>bool类型。与、或、非是基本的操作。</li>
+</ul>
+<p>有些操作是各个类型都可能有，比如等于，不等于。还有一些额外的操作，比如bitwise，就是位运算，比如|, &amp;, ~, ^, &gt;&gt;, &lt;&lt;等。</p>
+<p>对于数据，最直接的体现就是literal。对于操作，最直接的体现就是操作符(Operator)。比如+, -, *, /, %等。<br>操作符根据位置不同又分为三种，分别为：中置(infix)，前置(prefix)，后置(postfix)。被操作的数据称为操作数。中置就是说操作符在操作数的中间，这也说得有两个操作数，前置和后置就是操作符一个在操作数的前面，另一个在后面。举一些列子：</p>
+<ul>
+<li>中置，7 + 4，这里的+就是中置操作符</li>
+<li>前置，-2。scala里面的前置操作符只有+, -, !, ~。</li>
+<li>后置，好像还真没有什么操作符是后置的。不过在scala里面，操作符实际上是方法，就是说7 + 4实际上是在7上调用了+这个方法，然后传入了4这个操作数。又可以写成(7).+(4)。所以，没有参数的方法调用就算是后置操作符了。比如”Hello World” toLowerCase。这里实际上是”Hello World”.toLowerCase。只是scala里面这种调用情况下可以省略那个点。至于什么时候可以省略，后面会提到。</li>
+</ul>
+<p>基本到这里，就基本介绍完计算了。就是说，此时应该可以通过scala这门编程语言让计算机完成一些计算了。</p>
+<h3 id="多行"><a href="#多行" class="headerlink" title="多行"></a>多行</h3><p>有了数据及操作之后，我们就可以在scala的REPL上来进行一些简单的计算了。在mac上的terminal直接输入scala，然后完成一些计算：</p>
+<p><img src="/images/scala_repl.png" alt="scala_repl"></p>
+<p>在REPL里面有个问题就是，如果是简单的计算，比如7+4这种就很方便。但是如果是比较复杂的计算呢？比如计算一个阶乘。这个时候简单的单行程序就不行了。解决问题需要多行代码。<br>牵涉到多行，就有一个分隔符的问题。java里面每行的结果必须要有一个分号。这个分号就类似于一个分隔符。幸运的是scala里面并不需要在行末使用分号。<br>除了多行之外，完成比单行稍微复杂的计算，就需要将一些小的计算结果暂存起来，然后在小的计算结果上进行计算。这时候就需要变量。变量就是一个可以改变的符号。对应的还有不变量，就是常量。具体的声明，在scala里面，变量使用var(variable)，常量使用val(value)。比如：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">"I am a variable"</span></span><br><span class="line"><span class="keyword">val</span> y = <span class="string">"I cannot change"</span></span><br></pre></td></tr></table></figure></p>
+<p>在有了常量或变量，多行之后，就可以实现比单行复杂的代码了，比如计算10的阶乘：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> firstPart = <span class="number">1</span> * <span class="number">2</span> * <span class="number">3</span> * <span class="number">4</span> * <span class="number">5</span></span><br><span class="line"><span class="keyword">val</span> secondPart = <span class="number">6</span> * <span class="number">7</span> * <span class="number">8</span> * <span class="number">9</span> * <span class="number">10</span></span><br><span class="line"><span class="keyword">val</span> result = firstPart * secondPart</span><br></pre></td></tr></table></figure></p>
+<p>当然，这完全可以放在一行。不过作为举例，不必太过苛责，意达即可。<br>在定义变量或者常量的时候，也可以显示定义其类型，比如：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> firstPart: <span class="type">Int</span> = <span class="number">1</span> * <span class="number">2</span> * <span class="number">3</span> * <span class="number">4</span> * <span class="number">5</span></span><br><span class="line"><span class="keyword">val</span> secondPart: <span class="type">Int</span> = <span class="number">6</span> * <span class="number">7</span> * <span class="number">8</span> * <span class="number">9</span> * <span class="number">10</span></span><br><span class="line"><span class="keyword">val</span> result: <span class="type">Int</span> = firstPart * secondPart</span><br></pre></td></tr></table></figure></p>
+<p>这时候有一个问题，如何运行上面的代码呢？<br>一种方式是将上述代码写在一个以scala作为后缀的文件里面，比如叫”multi_line.scala”。然后在REPL里面load该文件。比如：</p>
+<p><img src="/images/multi_line.png" alt="multi_line"></p>
+<p>另一种方式就是使用scala script:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env scala</span></span><br><span class="line"></span><br><span class="line">val firstPart = 1 * 2 * 3 * 4 * 5</span><br><span class="line">val secondPart = 6 * 7 * 8 * 9 * 10</span><br><span class="line">val result = firstPart * secondPart</span><br><span class="line">println(result)</span><br></pre></td></tr></table></figure></p>
+<p>上面的内容放在了一个叫”multi_line_script.sh”的文件中，怎么运行呢？</p>
+<ul>
+<li>首先<code>chmod a+x multi_line_script.sh</code></li>
+<li>然后使用<code>./multi_line_script.sh</code>执行</li>
+</ul>
+<p>我在mac下执行成功。</p>
+<h3 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h3><p>有了多行之后，这时候实际上就有控制结构了。想到控制结构，就想到典型的三种：顺序，分支，循环。上面的例子就是顺序结构，即先执行什么后执行什么。循环结构并不是必须的，不过有还是ok的啦。<br><strong>分支结构</strong>:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="number">10</span></span><br><span class="line"><span class="keyword">val</span> result = <span class="keyword">if</span>(x &gt; <span class="number">10</span>) <span class="string">"larger than 10"</span> <span class="keyword">else</span> <span class="string">"smaller than or equal to 10"</span></span><br></pre></td></tr></table></figure></p>
+<p>已然是使用了”if”和”else”的组合。注意到if的结果赋给了常量result，这里表明if这个表达式是有结果的。<br>if和else只是两个分支，多个分支的情况怎么办呢？一种方法是在else里面继续if-else。还有就比如java里面的switch-case。scala里面有一种叫”pattern match”的东西。先来看个例子：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> animal = <span class="string">"dog"</span></span><br><span class="line"><span class="keyword">val</span> resultAnimal = animal <span class="keyword">match</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"cat"</span> =&gt; <span class="string">"c"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"dog"</span> =&gt; <span class="string">"d"</span></span><br><span class="line">    <span class="keyword">case</span> _ =&gt; <span class="string">"a"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>resultAnimal</code>的结果是<code>d</code>。<code>match</code>前面的东西叫做”selector”，后面跟一个大括号，里面有多条<code>case</code>语句，一个case代表一个分支。最后的<code>case _ =&gt; &quot;a&quot;</code>，其中的<code>_</code>表示匹配所有情况（类似于一个default分支）。<code>_</code>表示不在乎具体的内容是什么。</p>
+<p><strong>循环</strong>：<br>循环一般有两种，一种是while，另一种是for。先看while：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (i &lt; <span class="number">10</span>) &#123;</span><br><span class="line">  println(i)</span><br><span class="line">  i += <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>好像并不需要解释什么。注意这里要使用var。</p>
+<p>还有就是for循环了:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(j &lt;- <span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>))&#123;</span><br><span class="line">  println(j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是，j这个量并没有显示定义，然后j并不是一个变量，而是一个常量。Array表示一个数组。上面的for循环就是遍历了这个数组，然后将值打印了出来。符号”&lt;-“，可以认为是数学里面的属于符号。<br>scala的for循环还有其他一些东西，以后再谈了。具体内容可以参考《Programming in Scala》。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>有了数据，操作，多行，控制结构。这时候我们就可以写稍微复杂一些的程序了。比如阶乘的计算：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span>(j &lt;- <span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)) &#123;</span><br><span class="line">  result *= j</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里有两个问题。</p>
+<ul>
+<li>第一，上面这个只能计算5的阶乘，如果要计算10的阶乘，就得再写一遍，只不过把数组那部分给替换掉。这就是重复。</li>
+<li>第二，从阅读的角度来看，我并不能一眼看出这段代码是干什么的，必须一行一行一字一字去读，然后才能明白。“哦，原来这是在算5的阶乘啊”。没有办法去忽略细节，只关注我们想要关注的地方。</li>
+</ul>
+<p>为了解决上面两个问题，我想到了函数。函数是什么？我认为是一种抽象和封装，它将一段代码包(wrap)了起来，然后给了一个名字。同时还有对应的输入和输出。<br>所以，函数的三要素：输入，输出，函数名。当然了，肯定还要函数体（空的函数体也算啦）。<br>来看看scala里面对于函数的定义：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(x: <span class="type">Int</span>, y: <span class="type">Int</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; y)</span><br><span class="line">      x</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>几点：</p>
+<ul>
+<li>使用def关键字表明定义的是一个函数</li>
+<li>函数名的位置就直接在def后面</li>
+<li>函数名后面跟着参数列表，放括号里面</li>
+<li>每个参数有自己的类型</li>
+<li>函数的返回值类型。跟在括号的后面</li>
+<li>等号，表明后面的就是函数体了</li>
+<li>使用大括号来限定函数体。就是说函数体就在大括号里面啦。</li>
+</ul>
+<p>这里面有def，函数名这些。其实这些都不是特别必要的，我们可以看看原始的没有任何夸张和想象的形式，function literal。来看一段代码：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).foreach(arg =&gt; println(arg))</span><br></pre></td></tr></table></figure></p>
+<p><code>foreach</code>是Array上的一个函数，这个函数可以接受另一个函数作为参数。<code>arg =&gt; println(arg)</code>就是一个function literal，有时候也就叫匿名函数（因为没有名字嘛）。函数三要素。一，没有函数名；二，输入，就是<code>=&gt;</code>前面那个；三，输出，没有显示声明会输出什么。四，函数体，<code>=&gt;</code>后面的就是。<br>function literal还有一些别的写法，比如：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> withType = (x: <span class="type">Int</span>) =&gt; x + <span class="number">2</span></span><br><span class="line"><span class="keyword">val</span> doesNotCare = (_: <span class="type">Int</span>) =&gt; <span class="number">10</span></span><br><span class="line"><span class="keyword">val</span> multiLine = (x: <span class="type">Int</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> temp = x + <span class="number">10</span></span><br><span class="line">    x + temp</span><br><span class="line">&#125;</span><br><span class="line">withType(<span class="number">2</span>)</span><br><span class="line">doesNotCare(<span class="number">3</span>)</span><br><span class="line">multiLine(<span class="number">10</span>)</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是<code>val doesNotWork = x =&gt; println x</code>是过不了编译的。在REPL里面报x没有定义类型。但是在<code>Array.foreach</code>里面是可以使用的，因为<code>Array.foreach</code>定义了其参数的参数类型(其参数是一个函数)。</p>
+<p>说到function literal，不由得联想起closure来。那么什么是closure呢？<br>先来看看《Programming in Scala》里面的一段话：</p>
+<blockquote>
+<p>The name arises from the act of “closing” the function literal by “capturing” the bindings of its free variables.</p>
+</blockquote>
+<p>“the name”指的就是closure。看了这个就有几个问题，什么叫closing？什么是function literal？什么叫free variable？什么是capturing？<br>什么是function literal这个前面已经解释过了。就是一种相对简单基本的函数定义形式。<br>什么叫closing呢？<br>close就是关闭，所以我认为，这里的意思就是函数定义完成了。”closing the function literal”就是说函数结束了。函数体已经写完了。<br>什么叫free variable？举个例子：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x: <span class="type">Int</span>) =&gt; x + more</span><br></pre></td></tr></table></figure></p>
+<p>这里x是参数，more并不是。其并未定义。这里的more就叫free variable。就是说在当前function literal里面没有被定义的变量。而对应的x就叫做bound variable。<br>来一个能编译通过的例子：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> more = <span class="number">10</span></span><br><span class="line"><span class="keyword">val</span> addMore = (x: <span class="type">Int</span>) =&gt; x + more</span><br></pre></td></tr></table></figure></p>
+<p>这里的addMore就是一个closure。相对的，<code>val addOne = (x: Int) =&gt; x + 1</code>就不是一个closure。因为里面并没有capture一个free variable。所以，所谓capture就是指funtion literal里面使用了一个外部的变量。<br>需要强调的是，closure是跟funtion literal紧密联系起来的。感觉上相当于function literal的一个特例。<br>在scala里面，closure可以改变free variable的值，同时外部对free variable的改变也会反映到closure里面。</p>
+<p>提到函数，就得提下函数式编程。人们说，函数式编程有一些特点：</p>
+<ul>
+<li>函数也是值。可以用来赋值，可以用来给函数传递参数。所谓的“一等公民”。</li>
+<li>没有变量，全都是常量。</li>
+<li>聚焦于函数，函数是基本的思考单元。</li>
+</ul>
+<p>当然，函数式编程的范式不止这些。不过我觉得上面三点算是比较基本和重要的。</p>
+<p>还有，函数实际上也是一种抽象，它隐藏了细节。函数也是一种形式的组件，可以用来组和成更大的组件。</p>
+<h3 id="一个稍微复杂点的例子"><a href="#一个稍微复杂点的例子" class="headerlink" title="一个稍微复杂点的例子"></a>一个稍微复杂点的例子</h3><p>需求很简单，就是给一个字符串数组，将这个数组放在一个矩形框中打印出来。比如：<br>输入：Array(“what”, “a”, “good”, “day”)<br>输出：</p>
+<p><img src="/images/practice.png" alt="practice"></p>
+<p>一个可能的实现：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> symbol = <span class="string">"*"</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">repeat</span></span>(s: <span class="type">String</span>, times: <span class="type">Int</span>): <span class="type">String</span> = &#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="string">""</span></span><br><span class="line">    (<span class="number">1</span> to times).foreach(_ =&gt; result += s)</span><br><span class="line">    result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preSymbol</span></span>(s: <span class="type">String</span>): <span class="type">String</span> = symbol + s</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">postSymbol</span></span>(s: <span class="type">String</span>, l: <span class="type">Int</span>): <span class="type">String</span> = s + repeat(<span class="string">" "</span>, l - s.length) + symbol</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateFrame</span></span>(array: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">String</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> largestLength = array.maxBy(_.length).length</span><br><span class="line">    array.transform(x =&gt; postSymbol(preSymbol(x), largestLength + <span class="number">1</span>)).mkString(<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">val</span> aSymbolLine = repeat(symbol, largestLength + <span class="number">2</span>)</span><br><span class="line">    aSymbolLine + <span class="string">"\n"</span> + array.mkString(<span class="string">"\n"</span>) + <span class="string">"\n"</span> + aSymbolLine</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">println(generateFrame(<span class="type">Array</span>(<span class="string">"what"</span>, <span class="string">"a"</span>, <span class="string">"good"</span>, <span class="string">"day"</span>)) + <span class="string">"\n"</span>)</span><br><span class="line">println(generateFrame(<span class="type">Array</span>(<span class="string">"w"</span>, <span class="string">"a"</span>, <span class="string">"g"</span>, <span class="string">"d"</span>)) + <span class="string">"\n"</span>)</span><br><span class="line">println(generateFrame(<span class="type">Array</span>(<span class="string">""</span>, <span class="string">"a"</span>, <span class="string">"g"</span>, <span class="string">"d"</span>)) + <span class="string">"\n"</span>)</span><br><span class="line">println(generateFrame(<span class="type">Array</span>(<span class="string">"w"</span>, <span class="string">"a"</span>, <span class="string">"g"</span>, <span class="string">""</span>)) + <span class="string">"\n"</span>)</span><br><span class="line">println(generateFrame(<span class="type">Array</span>(<span class="string">"w"</span>, <span class="string">"a"</span>, <span class="string">""</span>, <span class="string">"d"</span>)) + <span class="string">"\n"</span>)</span><br><span class="line">println(generateFrame(<span class="type">Array</span>(<span class="string">"what"</span>, <span class="string">"a"</span>, <span class="string">""</span>, <span class="string">"d"</span>)) + <span class="string">"\n"</span>)</span><br><span class="line">println(generateFrame(<span class="type">Array</span>(<span class="string">"what"</span>, <span class="string">"a"</span>, <span class="string">"gooooooooooooooooooooooood"</span>, <span class="string">"day"</span>)) + <span class="string">"\n"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>这篇就先到这个地方。总结一下，先介绍了抽象、分类、还原论、编程语言等。然后从计算说起，聊到数据及其操作，具体的就是数据的类型，基本数据及复合数据，然后不同类型对应的操作。然后是多行，多行就牵涉了行分隔符，变量，常量，scala script。控制结构，就想到了顺序、分支、循环。其中分支包括了if-else和pattern matching。然后是函数，想到了匿名函数和closure，以及函数式编程。<br>最后，本文并不追求scala的各种语言细节，只是想找一根线将scala中的各个大的概念串起来。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/07/08/成为技术领导者笔记与思考/">
+        成为技术领导者笔记与思考 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "koly";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By koly. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/kolyjjj" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+      
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?b9e58ce86835727eab5c9fa8c11c7f1f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+</body>
+</html>
